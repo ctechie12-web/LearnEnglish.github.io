@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrases of the Day — Grade 7 English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sky-dawn: #e8f4f8;
+    --sky-noon: #fff8e7;
+    --sky-dusk: #f3eaf8;
+    --ink: #1a1a2e;
+    --ink-muted: #555577;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.10);
+    --radius: 14px;
+    --green: #2d6a4f;
+    --green-bg: #d8f3dc;
+    --red: #9b2226;
+    --red-bg: #fde8e8;
+    --amber: #7d4e00;
+    --amber-bg: #fff3cd;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(160deg, #e8f4f8 0%, #fff8e7 50%, #f3eaf8 100%);
+    min-height: 100vh;
+    color: var(--ink);
+    padding: 0 0 4rem;
+  }
+
+  header {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  header h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    font-size: 15px;
+    color: var(--ink-muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .instruction-box {
+    max-width: 700px;
+    margin: 1.5rem auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .instruction-box .icon { font-size: 20px; margin-top: 2px; flex-shrink: 0; }
+
+  .progress-bar-wrap {
+    max-width: 700px;
+    margin: 0 auto 0.5rem;
+    padding: 0 1rem;
+  }
+  .progress-label {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    height: 6px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #81C784);
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+
+  .section-wrap {
+    max-width: 700px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .phrase-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+  }
+
+  .phrase-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+  .card-header {
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-header.dawn { background: var(--sky-dawn); }
+  .card-header.noon { background: var(--sky-noon); }
+  .card-header.dusk { background: var(--sky-dusk); }
+
+  .time-icon { font-size: 28px; }
+
+  .phrase-title {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .phrase-subtitle {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+
+  .example-row {
+    padding: 1rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.015);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .example-num {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-muted);
+    min-width: 22px;
+    margin-top: 1px;
+  }
+
+  .example-text {
+    font-size: 14.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .example-text em {
+    font-weight: 600;
+    font-style: normal;
+    color: var(--ink);
+    background: rgba(0,0,0,0.05);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  .student-row {
+    padding: 0.85rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .student-row:last-of-type { border-bottom: none; }
+
+  .student-num {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    min-width: 22px;
+    margin-top: 10px;
+  }
+
+  .input-wrap { flex: 1; min-width: 200px; }
+
+  .sentence-input {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    color: var(--ink);
+    border: 1.5px solid rgba(0,0,0,0.12);
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: transparent;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    min-height: 44px;
+    resize: none;
+    line-height: 1.5;
+    overflow: hidden;
+  }
+
+  .sentence-input:focus {
+    border-color: #4a90d9;
+    background: rgba(74,144,217,0.03);
+  }
+
+  .sentence-input.correct { border-color: var(--green); background: var(--green-bg); }
+  .sentence-input.partial { border-color: #e6a817; background: var(--amber-bg); }
+  .sentence-input.wrong { border-color: var(--red); background: var(--red-bg); }
+
+  .check-btn {
+    margin-top: 6px;
+    padding: 7px 16px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    white-space: nowrap;
+    height: fit-content;
+  }
+
+  .check-btn:hover { background: #2d2d4e; }
+  .check-btn:active { transform: scale(0.97); }
+  .check-btn:disabled { background: #ccc; cursor: default; }
+
+  .feedback-row {
+    padding: 0 1.4rem 0.7rem 3.2rem;
+    display: none;
+  }
+
+  .feedback-row.visible { display: block; }
+
+  .feedback-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+
+  .feedback-chip.loading {
+    background: rgba(0,0,0,0.05);
+    color: var(--ink-muted);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .feedback-chip.correct { background: var(--green-bg); color: var(--green); }
+  .feedback-chip.partial { background: var(--amber-bg); color: var(--amber); }
+  .feedback-chip.wrong { background: var(--red-bg); color: var(--red); }
+
+  .card-footer {
+    padding: 0.9rem 1.4rem;
+    background: rgba(0,0,0,0.02);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .check-all-btn {
+    padding: 9px 22px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .check-all-btn:hover { background: #2d2d4e; }
+  .check-all-btn:disabled { background: #aaa; cursor: default; }
+
+  .card-score {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .confetti-area {
+    text-align: center;
+    padding: 2rem 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    display: none;
+  }
+  .confetti-area.visible { display: block; }
+  .confetti-area h2 { font-family: 'Lora', serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .confetti-area p { color: var(--ink-muted); font-size: 15px; }
+
+  .star { font-size: 2rem; }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-muted);
+    padding: 2rem 1rem 0;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Grade 7 English · Kerala</div>
+  <h1>Phrases of the Day</h1>
+  <p>Learn how we use poetic time-of-day phrases in English.<br>Write your own sentences and get instant feedback!</p>
+</header>
+
+<div class="instruction-box">
+  <span class="icon">📖</span>
+  <div>
+    <strong>Activity:</strong> The phrases <em>"wee hours of the dawn"</em>, <em>"blazing noon"</em>, and <em>"gathering dusk"</em> are poetic ways to describe different parts of the day. Read the example sentence in each box, then write 2 sentences of your own using the same phrase. Click <strong>Check</strong> for instant feedback!
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-label">
+    <span>Your progress</span>
+    <span id="progress-text">0 of 6 done</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<div class="section-wrap">
+
+  <!-- Card 1: Wee hours of the dawn -->
+  <div class="phrase-card" id="card-dawn">
+    <div class="card-header dawn">
+      <span class="time-icon">🌅</span>
+      <div>
+        <div class="phrase-title">"wee hours of the dawn"</div>
+        <div class="phrase-subtitle">The quiet, very early hours before sunrise</div>
+      </div>
+    </div>
+
+    <div class="example-row">
+      <span class="example-num">1.</span>
+      <span class="example-text">The football players start their practice in the <em>wee hours of the dawn</em>.</span>
+    </div>
+
+    <div class="student-row" data-phrase="wee hours of the dawn" data-idx="dawn-2">
+      <span class="student-num">2.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write your own sentence using 'wee hours of the dawn'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check</button>
+    </div>
+    <div class="feedback-row" id="fb-dawn-2"></div>
+
+    <div class="student-row" data-phrase="wee hours of the dawn" data-idx="dawn-3">
+      <span class="student-num">3.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write another sentence using 'wee hours of the dawn'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check</button>
+    </div>
+    <div class="feedback-row" id="fb-dawn-3"></div>
+
+    <div class="card-footer">
+      <span class="card-score" id="score-dawn">Score: 0/2</span>
+      <button class="check-all-btn" onclick="checkAll('dawn')">Check both ✓</button>
+    </div>
+  </div>
+
+  <!-- Card 2: Blazing noon -->
+  <div class="phrase-card" id="card-noon">
+    <div class="card-header noon">
+      <span class="time-icon">☀️</span>
+      <div>
+        <div class="phrase-title">"blazing noon"</div>
+        <div class="phrase-subtitle">The intense, bright heat of midday</div>
+      </div>
+    </div>
+
+    <div class="example-row">
+      <span class="example-num">1.</span>
+      <span class="example-text">The roads were empty in the <em>blazing noon</em>.</span>
+    </div>
+
+    <div class="student-row" data-phrase="blazing noon" data-idx="noon-2">
+      <span class="student-num">2.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write your own sentence using 'blazing noon'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check</button>
+    </div>
+    <div class="feedback-row" id="fb-noon-2"></div>
+
+    <div class="student-row" data-phrase="blazing noon" data-idx="noon-3">
+      <span class="student-num">3.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write another sentence using 'blazing noon'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check</button>
+    </div>
+    <div class="feedback-row" id="fb-noon-3"></div>
+
+    <div class="card-footer">
+      <span class="card-score" id="score-noon">Score: 0/2</span>
+      <button class="check-all-btn" onclick="checkAll('noon')">Check both ✓</button>
+    </div>
+  </div>
+
+  <!-- Card 3: Gathering dusk -->
+  <div class="phrase-card" id="card-dusk">
+    <div class="card-header dusk">
+      <span class="time-icon">🌆</span>
+      <div>
+        <div class="phrase-title">"gathering dusk"</div>
+        <div class="phrase-subtitle">The slowly deepening darkness of evening</div>
+      </div>
+    </div>
+
+    <div class="example-row">
+      <span class="example-num">1.</span>
+      <span class="example-text">The birds were returning to their nest in the <em>gathering dusk</em>.</span>
+    </div>
+
+    <div class="student-row" data-phrase="gathering dusk" data-idx="dusk-2">
+      <span class="student-num">2.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write your own sentence using 'gathering dusk'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check</button>
+    </div>
+    <div class="feedback-row" id="fb-dusk-2"></div>
+
+    <div class="student-row" data-phrase="gathering dusk" data-idx="dusk-3">
+      <span class="student-num">3.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write another sentence using 'gathering dusk'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check</button>
+    </div>
+    <div class="feedback-row" id="fb-dusk-3"></div>
+
+    <div class="card-footer">
+      <span class="card-score" id="score-dusk">Score: 0/2</span>
+      <button class="check-all-btn" onclick="checkAll('dusk')">Check both ✓</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="confetti-area" id="completion">
+  <div class="star">🌟</div>
+  <h2>Wonderful work!</h2>
+  <p>You've completed all three phrase exercises. Keep using these beautiful phrases in your writing!</p>
+</div>
+
+<footer>Grade 7 English · Kerala Curriculum · Powered by AI feedback</footer>
+
+<script>
+const PHRASES = {
+  dawn: 'wee hours of the dawn',
+  noon: 'blazing noon',
+  dusk: 'gathering dusk'
+};
+
+const scores = { dawn: 0, noon: 0, dusk: 0 };
+const checked = { 'dawn-2': false, 'dawn-3': false, 'noon-2': false, 'noon-3': false, 'dusk-2': false, 'dusk-3': false };
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+function updateProgress() {
+  const done = Object.values(checked).filter(Boolean).length;
+  document.getElementById('progress-text').textContent = done + ' of 6 done';
+  document.getElementById('progress-fill').style.width = (done / 6 * 100) + '%';
+  if (done === 6) {
+    setTimeout(() => {
+      document.getElementById('completion').classList.add('visible');
+      document.getElementById('completion').scrollIntoView({ behavior: 'smooth' });
+    }, 600);
+  }
+}
+
+function updateScore(card) {
+  const rows = document.querySelectorAll(`#card-${card} .student-row`);
+  let s = 0;
+  rows.forEach(r => {
+    const idx = r.dataset.idx;
+    if (checked[idx]) {
+      const fb = document.getElementById('fb-' + idx);
+      if (fb && fb.querySelector('.correct')) s++;
+    }
+  });
+  scores[card] = s;
+  document.getElementById('score-' + card).textContent = 'Score: ' + s + '/2';
+}
+
+async function evaluateSentence(sentence, phrase) {
+  const prompt = `You are a friendly English teacher for Grade 7 students in Kerala, India. 
+A student has written a sentence using the phrase "${phrase}".
+Their sentence: "${sentence}"
+
+Evaluate it strictly but encouragingly. Check:
+1. Does the sentence correctly USE the phrase "${phrase}" (it must appear in the sentence)?
+2. Is the grammar correct?
+3. Does the sentence make logical sense?
+
+Respond in this exact JSON format only, no extra text:
+{"result":"correct"|"partial"|"wrong","message":"1 short encouraging sentence of feedback under 20 words"}
+
+- "correct" = phrase used properly, grammar good, sentence sensible
+- "partial" = phrase present but grammar issue or slightly odd meaning
+- "wrong" = phrase not used, or sentence is completely incorrect/meaningless`;
+
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+
+  const data = await response.json();
+  const text = data.content.map(i => i.text || '').join('');
+  const clean = text.replace(/```json|```/g, '').trim();
+  return JSON.parse(clean);
+}
+
+async function checkSingle(btn) {
+  const row = btn.closest('.student-row');
+  const phrase = row.dataset.phrase;
+  const idx = row.dataset.idx;
+  const input = row.querySelector('.sentence-input');
+  const sentence = input.value.trim();
+  const fbRow = document.getElementById('fb-' + idx);
+
+  if (!sentence) {
+    input.focus();
+    input.style.border = '1.5px solid #e6a817';
+    setTimeout(() => input.style.border = '', 1200);
+    return;
+  }
+
+  btn.disabled = true;
+  input.disabled = true;
+
+  fbRow.innerHTML = '<span class="feedback-chip loading">⏳ Checking your sentence…</span>';
+  fbRow.classList.add('visible');
+
+  try {
+    const result = await evaluateSentence(sentence, phrase);
+    const icons = { correct: '✅', partial: '💡', wrong: '❌' };
+    fbRow.innerHTML = `<span class="feedback-chip ${result.result}">${icons[result.result]} ${result.message}</span>`;
+    input.classList.add(result.result);
+    checked[idx] = true;
+    const card = idx.split('-')[0];
+    updateScore(card);
+    updateProgress();
+  } catch (e) {
+    fbRow.innerHTML = '<span class="feedback-chip partial">⚠️ Could not connect. Check your internet and try again.</span>';
+    btn.disabled = false;
+    input.disabled = false;
+  }
+}
+
+async function checkAll(card) {
+  const rows = document.querySelectorAll(`#card-${card} .student-row`);
+  const btn = document.querySelector(`#card-${card} .check-all-btn`);
+  btn.disabled = true;
+
+  for (const row of rows) {
+    const idx = row.dataset.idx;
+    if (!checked[idx]) {
+      const singleBtn = row.querySelector('.check-btn');
+      if (!singleBtn.disabled) {
+        await checkSingle(singleBtn);
+        await new Promise(r => setTimeout(r, 400));
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>
