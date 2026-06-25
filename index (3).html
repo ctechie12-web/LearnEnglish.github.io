@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrases of the Day — Grade 7 English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --sky-dawn: #e8f4f8; --sky-noon: #fff8e7; --sky-dusk: #f3eaf8;
+    --ink: #1a1a2e; --ink-muted: #555577; --surface: #ffffff;
+    --border: rgba(0,0,0,0.10); --radius: 14px;
+    --green: #2d6a4f; --green-bg: #d8f3dc;
+    --red: #9b2226; --red-bg: #fde8e8;
+    --amber: #7d4e00; --amber-bg: #fff3cd;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(160deg, #e8f4f8 0%, #fff8e7 50%, #f3eaf8 100%);
+    min-height: 100vh; color: var(--ink); padding: 0 0 4rem;
+  }
+  header { text-align: center; padding: 2.5rem 1rem 1.5rem; }
+  .badge {
+    display: inline-block; background: var(--ink); color: #fff;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 1rem;
+  }
+  header h1 {
+    font-family: 'Lora', serif; font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 600; line-height: 1.25; color: var(--ink); margin-bottom: 0.5rem;
+  }
+  header p { font-size: 15px; color: var(--ink-muted); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+  .instruction-box {
+    max-width: 700px; margin: 1.5rem auto;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem 1.5rem;
+    font-size: 14.5px; line-height: 1.7; color: var(--ink-muted);
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .instruction-box .icon { font-size: 20px; margin-top: 2px; flex-shrink: 0; }
+  .progress-bar-wrap { max-width: 700px; margin: 0 auto 0.5rem; padding: 0 1rem; }
+  .progress-label {
+    font-size: 12px; color: var(--ink-muted); margin-bottom: 4px;
+    display: flex; justify-content: space-between;
+  }
+  .progress-track { height: 6px; background: rgba(0,0,0,0.08); border-radius: 10px; overflow: hidden; }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, #4CAF50, #81C784);
+    border-radius: 10px; width: 0%; transition: width 0.5s ease;
+  }
+  .section-wrap { max-width: 700px; margin: 1.5rem auto; padding: 0 1rem; }
+  .phrase-card {
+    background: var(--surface); border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden;
+    margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+  }
+  .phrase-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .card-header {
+    padding: 1.1rem 1.4rem; display: flex;
+    align-items: center; gap: 12px; border-bottom: 1px solid var(--border);
+  }
+  .card-header.dawn { background: var(--sky-dawn); }
+  .card-header.noon { background: var(--sky-noon); }
+  .card-header.dusk { background: var(--sky-dusk); }
+  .time-icon { font-size: 28px; }
+  .phrase-title { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600; font-style: italic; color: var(--ink); }
+  .phrase-subtitle { font-size: 12px; color: var(--ink-muted); margin-top: 2px; }
+  .example-row {
+    padding: 1rem 1.4rem; border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.015); display: flex; gap: 10px; align-items: flex-start;
+  }
+  .example-num { font-size: 13px; font-weight: 600; color: var(--ink-muted); min-width: 22px; margin-top: 1px; }
+  .example-text { font-size: 14.5px; color: var(--ink-muted); line-height: 1.6; font-style: italic; }
+  .example-text em {
+    font-weight: 600; font-style: normal; color: var(--ink);
+    background: rgba(0,0,0,0.06); padding: 1px 6px; border-radius: 4px;
+  }
+  .student-row {
+    padding: 0.85rem 1.4rem; border-bottom: 1px solid var(--border);
+    display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap;
+  }
+  .student-num { font-size: 13px; font-weight: 600; color: var(--ink); min-width: 22px; margin-top: 10px; }
+  .input-wrap { flex: 1; min-width: 200px; }
+  .sentence-input {
+    width: 100%; font-family: 'Inter', sans-serif; font-size: 14.5px;
+    color: var(--ink); border: 1.5px solid rgba(0,0,0,0.12); border-radius: 8px;
+    padding: 8px 12px; background: transparent;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none; min-height: 44px; resize: none; line-height: 1.5; overflow: hidden;
+  }
+  .sentence-input:focus { border-color: #4a90d9; background: rgba(74,144,217,0.03); }
+  .sentence-input.correct { border-color: var(--green); background: var(--green-bg); }
+  .sentence-input.partial { border-color: #e6a817; background: var(--amber-bg); }
+  .sentence-input.wrong { border-color: var(--red); background: var(--red-bg); }
+  .check-btn {
+    margin-top: 6px; padding: 7px 16px; background: var(--ink); color: #fff;
+    border: none; border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif;
+    font-weight: 500; cursor: pointer; transition: background 0.15s, transform 0.1s;
+    white-space: nowrap; height: fit-content;
+  }
+  .check-btn:hover { background: #2d2d4e; }
+  .check-btn:active { transform: scale(0.97); }
+  .check-btn:disabled { background: #ccc; cursor: default; }
+  .feedback-row { padding: 0 1.4rem 0.85rem 3.4rem; display: none; }
+  .feedback-row.visible { display: block; }
+  .feedback-chip {
+    display: inline-flex; align-items: flex-start; gap: 7px;
+    font-size: 13px; padding: 7px 13px; border-radius: 10px;
+    font-weight: 500; line-height: 1.5; max-width: 100%;
+  }
+  .feedback-chip.correct { background: var(--green-bg); color: var(--green); }
+  .feedback-chip.partial { background: var(--amber-bg); color: var(--amber); }
+  .feedback-chip.wrong { background: var(--red-bg); color: var(--red); }
+  .tip-box {
+    margin-top: 6px; font-size: 12.5px; padding: 6px 11px;
+    background: rgba(0,0,0,0.03); border-radius: 8px;
+    color: var(--ink-muted); line-height: 1.5; display: none;
+  }
+  .tip-box.visible { display: block; }
+  .card-footer {
+    padding: 0.9rem 1.4rem; background: rgba(0,0,0,0.02);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap;
+  }
+  .check-all-btn {
+    padding: 9px 22px; background: var(--ink); color: #fff; border: none;
+    border-radius: 8px; font-size: 13.5px; font-family: 'Inter', sans-serif;
+    font-weight: 500; cursor: pointer; transition: background 0.15s;
+  }
+  .check-all-btn:hover { background: #2d2d4e; }
+  .check-all-btn:disabled { background: #aaa; cursor: default; }
+  .card-score { font-size: 13px; color: var(--ink-muted); font-weight: 500; }
+  .confetti-area {
+    text-align: center; padding: 2rem 1rem;
+    max-width: 700px; margin: 0 auto; display: none;
+  }
+  .confetti-area.visible { display: block; }
+  .confetti-area h2 { font-family: 'Lora', serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .confetti-area p { color: var(--ink-muted); font-size: 15px; }
+  .star { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .shake { animation: shake 0.4s ease; }
+  @keyframes shake {
+    0%,100%{transform:translateX(0)} 20%{transform:translateX(-5px)} 60%{transform:translateX(5px)}
+  }
+  footer { text-align: center; font-size: 12px; color: var(--ink-muted); padding: 2rem 1rem 0; opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Grade 7 English · Kerala</div>
+  <h1>Phrases of the Day</h1>
+  <p>Learn how we use poetic time-of-day phrases in English.<br>Write your own sentences and get instant feedback!</p>
+</header>
+
+<div class="instruction-box">
+  <span class="icon">📖</span>
+  <div>
+    <strong>Activity:</strong> The phrases <em>"wee hours of the dawn"</em>, <em>"blazing noon"</em>, and <em>"gathering dusk"</em> describe different parts of the day. Read the example sentence, then write <strong>2 sentences of your own</strong> using the same phrase. Click <strong>Check</strong> for instant feedback!
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-label">
+    <span>Your progress</span>
+    <span id="progress-text">0 of 6 done</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<div class="section-wrap">
+
+  <!-- CARD 1 -->
+  <div class="phrase-card" id="card-dawn">
+    <div class="card-header dawn">
+      <span class="time-icon">🌅</span>
+      <div>
+        <div class="phrase-title">"wee hours of the dawn"</div>
+        <div class="phrase-subtitle">The quiet, very early hours just before sunrise</div>
+      </div>
+    </div>
+    <div class="example-row">
+      <span class="example-num">1.</span>
+      <span class="example-text">The football players start their practice in the <em>wee hours of the dawn</em>.</span>
+    </div>
+    <div class="student-row" data-phrase="wee hours of the dawn" data-idx="dawn-2">
+      <span class="student-num">2.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write your sentence using 'wee hours of the dawn'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check ✓</button>
+    </div>
+    <div class="feedback-row" id="fb-dawn-2"></div>
+    <div class="student-row" data-phrase="wee hours of the dawn" data-idx="dawn-3">
+      <span class="student-num">3.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write another sentence using 'wee hours of the dawn'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check ✓</button>
+    </div>
+    <div class="feedback-row" id="fb-dawn-3"></div>
+    <div class="card-footer">
+      <span class="card-score" id="score-dawn">⭐ Score: 0 / 2</span>
+      <button class="check-all-btn" onclick="checkAll('dawn')">Check both sentences</button>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="phrase-card" id="card-noon">
+    <div class="card-header noon">
+      <span class="time-icon">☀️</span>
+      <div>
+        <div class="phrase-title">"blazing noon"</div>
+        <div class="phrase-subtitle">The intense, hot brightness of midday</div>
+      </div>
+    </div>
+    <div class="example-row">
+      <span class="example-num">1.</span>
+      <span class="example-text">The roads were empty in the <em>blazing noon</em>.</span>
+    </div>
+    <div class="student-row" data-phrase="blazing noon" data-idx="noon-2">
+      <span class="student-num">2.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write your sentence using 'blazing noon'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check ✓</button>
+    </div>
+    <div class="feedback-row" id="fb-noon-2"></div>
+    <div class="student-row" data-phrase="blazing noon" data-idx="noon-3">
+      <span class="student-num">3.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write another sentence using 'blazing noon'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check ✓</button>
+    </div>
+    <div class="feedback-row" id="fb-noon-3"></div>
+    <div class="card-footer">
+      <span class="card-score" id="score-noon">⭐ Score: 0 / 2</span>
+      <button class="check-all-btn" onclick="checkAll('noon')">Check both sentences</button>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="phrase-card" id="card-dusk">
+    <div class="card-header dusk">
+      <span class="time-icon">🌆</span>
+      <div>
+        <div class="phrase-title">"gathering dusk"</div>
+        <div class="phrase-subtitle">The slowly deepening darkness of evening</div>
+      </div>
+    </div>
+    <div class="example-row">
+      <span class="example-num">1.</span>
+      <span class="example-text">The birds were returning to their nest in the <em>gathering dusk</em>.</span>
+    </div>
+    <div class="student-row" data-phrase="gathering dusk" data-idx="dusk-2">
+      <span class="student-num">2.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write your sentence using 'gathering dusk'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check ✓</button>
+    </div>
+    <div class="feedback-row" id="fb-dusk-2"></div>
+    <div class="student-row" data-phrase="gathering dusk" data-idx="dusk-3">
+      <span class="student-num">3.</span>
+      <div class="input-wrap">
+        <textarea class="sentence-input" placeholder="Write another sentence using 'gathering dusk'…" rows="1" oninput="autoResize(this)"></textarea>
+      </div>
+      <button class="check-btn" onclick="checkSingle(this)">Check ✓</button>
+    </div>
+    <div class="feedback-row" id="fb-dusk-3"></div>
+    <div class="card-footer">
+      <span class="card-score" id="score-dusk">⭐ Score: 0 / 2</span>
+      <button class="check-all-btn" onclick="checkAll('dusk')">Check both sentences</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="confetti-area" id="completion">
+  <div class="star">🌟</div>
+  <h2>Wonderful work!</h2>
+  <p>You've completed all three phrase exercises.<br>Keep using these beautiful phrases in your writing!</p>
+</div>
+
+<footer>Grade 7 English · Kerala Curriculum · Smart offline feedback</footer>
+
+<script>
+// ── Evaluation engine ─────────────────────────────────────────────────────────
+// All checking is done locally in the browser – no internet needed after page load.
+
+const RULES = {
+  "wee hours of the dawn": {
+    must: ["wee hours of the dawn"],
+    context: ["early","morning","dark","quiet","asleep","sleep","awake","rose","woke","start","begin","began","study","work","pray","milk","birds","silence","still","stars","moon","mist","cool","cold","silent","farmer","baker","nurse","fisherman","fisher","cook","prepare","arrive","leave","set out","before sunrise","before dawn","before daylight"],
+    wrongContext: ["afternoon","evening","dusk","noon","night","midnight","sunset","sunrise was over","bright sun","hot"],
+    tips: [
+      "Try: 'My grandmother wakes up in the wee hours of the dawn to pray.'",
+      "Try: 'The milkman delivers milk in the wee hours of the dawn.'",
+      "Remember: 'wee hours' means very early morning, before sunrise."
+    ]
+  },
+  "blazing noon": {
+    must: ["blazing noon"],
+    context: ["hot","heat","sun","sunny","bright","shadow","shade","rest","sleep","tired","sweat","empty","quiet","silent","scorching","burning","harsh","intense","shelter","midday","afternoon","cattle","animals","cool","water","thirsty","nobody","no one","street","road","field","shop","close","shut","nap","school","lunch","home"],
+    wrongContext: ["night","dark","midnight","evening","dusk","dawn","morning","cold","cool breeze","rain","snow","stars","moon"],
+    tips: [
+      "Try: 'The farmers rested under the tree during the blazing noon.'",
+      "Try: 'In the blazing noon, the streets of Kerala were deserted.'",
+      "Remember: 'blazing noon' means the very hot midday sun."
+    ]
+  },
+  "gathering dusk": {
+    must: ["gathering dusk"],
+    context: ["dark","night","evening","sunset","stars","moon","home","return","came","lamp","light","candle","children","play","shop","close","shut","street","quiet","shadow","bird","crow","bat","cow","cattle","cool","wind","breeze","sky","orange","purple","pink","end","finish","tired","rest","sleep","pray","temple","mosque","church","call"],
+    wrongContext: ["morning","noon","midday","sunrise","dawn","bright sun","hot afternoon","blazing"],
+    tips: [
+      "Try: 'The children hurried home as the gathering dusk fell over the village.'",
+      "Try: 'Street lights flickered on in the gathering dusk.'",
+      "Remember: 'gathering dusk' means the evening darkness slowly spreading."
+    ]
+  }
+};
+
+const POSITIVE = [
+  "Excellent sentence!","Great job!","Well done!","Superb!","Perfect use of the phrase!",
+  "Brilliant!","Outstanding!","Very well written!","Fantastic!","Impressive!"
+];
+const PARTIAL_MSG = [
+  "Good try! The phrase is there, but check your grammar.",
+  "Nice attempt! Try to make your sentence a bit more meaningful.",
+  "You used the phrase — just refine the sentence a little.",
+  "Almost there! Read it aloud and see if it sounds natural.",
+  "Good effort! Make sure the sentence makes complete sense."
+];
+const WRONG_MISSING = [
+  "The phrase is missing from your sentence. Please include it exactly.",
+  "Make sure to write the phrase in your sentence.",
+  "Your sentence doesn't contain the required phrase. Try again!"
+];
+const WRONG_SHORT = [
+  "Your sentence is too short. Write a complete sentence with a subject and verb.",
+  "Please write a full sentence — at least 5 words long.",
+  "A complete sentence needs more words. Keep going!"
+];
+const WRONG_CONTEXT = [
+  "The phrase doesn't quite fit the meaning in your sentence. Remember what time of day it refers to.",
+  "Check the meaning of the phrase — does your sentence match the right time of day?",
+  "The context seems off. Think about when this phrase is used during the day."
+];
+
+function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function normalize(s) { return s.toLowerCase().replace(/['']/g,"'").replace(/\s+/g,' ').trim(); }
+
+function evaluate(sentence, phraseKey) {
+  const s = normalize(sentence);
+  const rule = RULES[phraseKey];
+
+  // Must have the phrase
+  if (!rule.must.some(p => s.includes(p))) {
+    return { result: 'wrong', message: rand(WRONG_MISSING), tip: rule.tips[2] };
+  }
+
+  // Too short (fewer than 5 words)
+  if (s.split(/\s+/).length < 5) {
+    return { result: 'wrong', message: rand(WRONG_SHORT), tip: rule.tips[0] };
+  }
+
+  // Wrong-context words strongly present
+  const badHit = rule.wrongContext.some(w => s.includes(w));
+  if (badHit) {
+    return { result: 'partial', message: rand(WRONG_CONTEXT), tip: rule.tips[Math.floor(Math.random()*rule.tips.length)] };
+  }
+
+  // Basic grammar checks
+  const hasVerb = /\b(is|are|was|were|am|be|been|being|have|has|had|do|does|did|will|would|can|could|should|shall|may|might|must|need|dare|used|go|goes|went|run|runs|play|plays|wake|wakes|start|starts|sit|sits|come|comes|walk|walks|sleep|sleeps|work|works|study|studies|return|returns|begin|begins|arrive|arrives|leave|leaves|feel|feels|look|looks|seem|seems|stand|stands|wait|waits|watch|watches|hear|hears|see|sees|know|knows|think|thinks|say|says|tell|tells|make|makes|take|takes|get|gets|give|gives|find|finds|keep|keeps|bring|brings|buy|buys|call|calls|turn|turns|move|moves|shine|shines|rise|rises|fall|falls|spread|spreads|gather|gathers|cover|covers|fill|fills|light|lights|grow|grows|fly|flies|swim|swims|sing|sings|cook|cooks|pray|prays|step|steps|rode|driven|carried|stayed|remained|appeared|seemed|smelled|smelt|heard|saw|felt|knew|thought|said|told|made|took|got|gave|found|kept|brought|bought|called|turned|moved|shone|rose|fell|spread|gathered|covered|filled|lit|grew|flew|swam|sang|cooked|prayed|stepped)\b/, 'i');
+  if (!hasVerb.test(s)) {
+    return { result: 'partial', message: rand(PARTIAL_MSG), tip: "Make sure your sentence has a verb (an action word)." };
+  }
+
+  // Check if any positive context word is present
+  const goodHit = rule.context.some(w => s.includes(w));
+
+  if (goodHit) {
+    return { result: 'correct', message: rand(POSITIVE), tip: null };
+  } else {
+    // Phrase used correctly, verb present, no bad context — accept it
+    return { result: 'correct', message: rand(POSITIVE), tip: null };
+  }
+}
+
+// ── UI helpers ─────────────────────────────────────────────────────────────────
+const checked = {};
+const scores = { dawn: 0, noon: 0, dusk: 0 };
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+function updateProgress() {
+  const done = Object.keys(checked).length;
+  document.getElementById('progress-text').textContent = done + ' of 6 done';
+  document.getElementById('progress-fill').style.width = (done / 6 * 100) + '%';
+  if (done === 6) {
+    setTimeout(() => {
+      const el = document.getElementById('completion');
+      el.classList.add('visible');
+      el.scrollIntoView({ behavior: 'smooth' });
+    }, 700);
+  }
+}
+
+function updateScore(card) {
+  const allIdx = [`${card}-2`, `${card}-3`];
+  let s = 0;
+  allIdx.forEach(idx => { if (checked[idx] === 'correct') s++; });
+  scores[card] = s;
+  const stars = s === 2 ? '⭐⭐' : s === 1 ? '⭐' : '☆';
+  document.getElementById('score-' + card).textContent = stars + ' Score: ' + s + ' / 2';
+}
+
+function checkSingle(btn) {
+  const row = btn.closest('.student-row');
+  const phrase = row.dataset.phrase;
+  const idx = row.dataset.idx;
+  const input = row.querySelector('.sentence-input');
+  const sentence = input.value.trim();
+  const fbRow = document.getElementById('fb-' + idx);
+
+  if (!sentence) {
+    input.classList.add('shake');
+    input.addEventListener('animationend', () => input.classList.remove('shake'), { once: true });
+    input.focus();
+    return;
+  }
+
+  const { result, message, tip } = evaluate(sentence, phrase);
+
+  // Update input style
+  input.classList.remove('correct', 'partial', 'wrong');
+  input.classList.add(result);
+
+  // Build feedback
+  const icons = { correct: '✅', partial: '💡', wrong: '❌' };
+  let html = `<span class="feedback-chip ${result}">${icons[result]} ${message}</span>`;
+  if (tip) html += `<div class="tip-box visible">💬 Hint: ${tip}</div>`;
+  fbRow.innerHTML = html;
+  fbRow.classList.add('visible');
+
+  // Lock if correct, allow retry if wrong/partial
+  if (result === 'correct') {
+    btn.disabled = true;
+    input.disabled = true;
+    checked[idx] = 'correct';
+  } else {
+    // Allow retry — don't lock
+    checked[idx] = checked[idx] || result; // only record first attempt for progress if not already correct
+    // Only count as "done" for progress if correct
+    delete checked[idx]; // remove so they can try again and progress only counts on correct
+  }
+
+  if (result === 'correct') updateProgress();
+  const card = idx.split('-')[0];
+  updateScore(card);
+}
+
+function checkAll(card) {
+  const rows = document.querySelectorAll(`#card-${card} .student-row`);
+  rows.forEach(row => {
+    const idx = row.dataset.idx;
+    if (!checked[idx]) {
+      const btn = row.querySelector('.check-btn');
+      if (!btn.disabled) checkSingle(btn);
+    }
+  });
+}
+</script>
+</body>
+</html>
