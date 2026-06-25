@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrases of the Day – Grade 7 English</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --dawn:#ffecd2;--dawn2:#fcb69f;--dawn-txt:#7c3500;
+  --noon:#fffde7;--noon2:#f9a825;--noon-txt:#5d4037;
+  --dusk:#ede7f6;--dusk2:#7c4dff;--dusk-txt:#311b92;
+  --green:#00c853;--green-bg:#e8f5e9;--green-dark:#1b5e20;
+  --amber:#ff8f00;--amber-bg:#fff8e1;--amber-dark:#5d4037;
+  --red:#d50000;--red-bg:#ffebee;--red-dark:#b71c1c;
+  --ink:#1a1a2e;--surface:#fff;--radius:18px;
+  --shadow:0 8px 32px rgba(0,0,0,0.10);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:linear-gradient(135deg,#ffecd2 0%,#ede7f6 50%,#fffde7 100%);
+  min-height:100vh;color:var(--ink);padding-bottom:5rem;
+}
+
+/* ── HERO ── */
+.hero{
+  text-align:center;padding:2.5rem 1rem 1rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'🌅☀️🌆';font-size:80px;opacity:0.07;
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  letter-spacing:20px;pointer-events:none;
+}
+.hero-badge{
+  display:inline-block;background:var(--ink);color:#fff;
+  font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 16px;border-radius:20px;margin-bottom:.8rem;
+}
+.hero h1{
+  font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;
+  background:linear-gradient(135deg,#ff6b35,#7c4dff,#00c853);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.2;margin-bottom:.5rem;
+}
+.hero p{font-size:15px;color:#555;max-width:500px;margin:0 auto;line-height:1.7;}
+
+/* ── XP BAR ── */
+.xp-wrap{
+  max-width:680px;margin:1.2rem auto;padding:0 1rem;
+}
+.xp-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.xp-label{font-size:13px;font-weight:700;color:var(--ink);}
+.xp-pts{font-size:13px;font-weight:800;color:#7c4dff;}
+.xp-track{
+  height:14px;background:rgba(0,0,0,0.08);border-radius:20px;overflow:hidden;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,0.08);
+}
+.xp-fill{
+  height:100%;width:0%;border-radius:20px;
+  background:linear-gradient(90deg,#7c4dff,#00c853);
+  transition:width .6s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 0 8px rgba(124,77,255,0.4);
+}
+
+/* ── STREAK ── */
+.streak-bar{
+  max-width:680px;margin:.4rem auto 1rem;padding:0 1rem;
+  display:flex;gap:8px;align-items:center;justify-content:center;
+}
+.streak-dot{
+  width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.08);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+}
+.streak-dot.lit{background:linear-gradient(135deg,#ff6b35,#ffca28);box-shadow:0 2px 12px rgba(255,107,53,0.5);}
+
+/* ── INSTRUCTION ── */
+.instr{
+  max-width:680px;margin:0 auto 1.5rem;padding:0 1rem;
+}
+.instr-box{
+  background:var(--surface);border-radius:var(--radius);
+  padding:1rem 1.4rem;border:2px dashed rgba(124,77,255,0.25);
+  font-size:14px;line-height:1.7;color:#444;display:flex;gap:10px;
+}
+.instr-box .ii{font-size:22px;flex-shrink:0;margin-top:1px;}
+
+/* ── CARDS ── */
+.cards{max-width:680px;margin:0 auto;padding:0 1rem;}
+
+.phrase-card{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow);margin-bottom:2rem;
+  overflow:hidden;border:2px solid transparent;
+  transition:transform .2s,box-shadow .2s;
+}
+.phrase-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.13);}
+
+/* card top banner */
+.card-banner{
+  padding:1.2rem 1.5rem;display:flex;align-items:center;gap:14px;
+  position:relative;overflow:hidden;
+}
+.card-banner.dawn{background:linear-gradient(135deg,var(--dawn),var(--dawn2));}
+.card-banner.noon{background:linear-gradient(135deg,var(--noon),var(--noon2));}
+.card-banner.dusk{background:linear-gradient(135deg,var(--dusk),var(--dusk2));}
+
+.banner-icon{font-size:42px;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2));}
+.banner-text{}
+.phrase-name{
+  font-family:'Lora',serif;font-size:1.2rem;font-style:italic;font-weight:600;
+}
+.card-banner.dawn .phrase-name{color:var(--dawn-txt);}
+.card-banner.noon .phrase-name{color:var(--noon-txt);}
+.card-banner.dusk .phrase-name{color:var(--dusk-txt);}
+
+.phrase-meaning{font-size:12px;font-weight:700;opacity:0.7;margin-top:2px;text-transform:uppercase;letter-spacing:.05em;}
+
+/* points badge on banner */
+.pts-badge{
+  margin-left:auto;background:rgba(255,255,255,0.45);
+  border-radius:30px;padding:4px 12px;font-size:12px;font-weight:800;
+  backdrop-filter:blur(4px);flex-shrink:0;
+}
+
+/* example */
+.example-strip{
+  padding:.9rem 1.5rem;background:rgba(0,0,0,0.025);
+  border-bottom:1.5px solid rgba(0,0,0,0.06);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.ex-label{
+  font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+  color:#888;flex-shrink:0;margin-top:3px;
+}
+.ex-text{font-size:14.5px;color:#444;line-height:1.6;font-style:italic;}
+.ex-text b{font-style:normal;color:var(--ink);background:rgba(124,77,255,0.1);padding:1px 6px;border-radius:5px;}
+
+/* input rows */
+.input-section{padding:1rem 1.5rem;}
+.input-row{margin-bottom:1rem;}
+.row-label{
+  font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;
+  color:#888;margin-bottom:6px;display:flex;align-items:center;gap:6px;
+}
+.row-label span{font-size:16px;}
+
+.textarea-wrap{position:relative;}
+textarea.sent{
+  width:100%;font-family:'Nunito',sans-serif;font-size:15px;
+  color:var(--ink);border:2px solid rgba(0,0,0,0.12);border-radius:12px;
+  padding:10px 14px;background:#fafafa;resize:none;outline:none;
+  min-height:52px;line-height:1.6;overflow:hidden;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+textarea.sent:focus{border-color:#7c4dff;background:#fff;box-shadow:0 0 0 3px rgba(124,77,255,0.12);}
+textarea.sent.ok{border-color:var(--green);background:var(--green-bg);}
+textarea.sent.hint{border-color:var(--amber);background:var(--amber-bg);}
+textarea.sent.bad{border-color:var(--red);background:var(--red-bg);}
+
+.char-count{
+  position:absolute;right:10px;bottom:8px;
+  font-size:11px;color:#bbb;font-weight:700;pointer-events:none;
+}
+
+.btn-row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.check-btn{
+  padding:8px 20px;background:var(--ink);color:#fff;border:none;
+  border-radius:10px;font-family:'Nunito',sans-serif;font-size:13.5px;
+  font-weight:700;cursor:pointer;transition:background .15s,transform .1s;
+  display:flex;align-items:center;gap:6px;
+}
+.check-btn:hover{background:#2d2d4e;}
+.check-btn:active{transform:scale(.96);}
+.check-btn:disabled{background:#ccc;cursor:default;}
+.retry-btn{
+  padding:8px 16px;background:transparent;color:#888;border:2px solid #ddd;
+  border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;
+  font-weight:700;cursor:pointer;transition:.15s;display:none;
+}
+.retry-btn:hover{border-color:#aaa;color:var(--ink);}
+.retry-btn.show{display:inline-flex;align-items:center;gap:5px;}
+
+/* feedback bubble */
+.fb-bubble{
+  margin-top:8px;padding:10px 14px;border-radius:12px;
+  font-size:14px;font-weight:700;line-height:1.5;display:none;
+  animation:popIn .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.fb-bubble.ok{background:var(--green-bg);color:var(--green-dark);display:block;}
+.fb-bubble.hint{background:var(--amber-bg);color:var(--amber-dark);display:block;}
+.fb-bubble.bad{background:var(--red-bg);color:var(--red-dark);display:block;}
+
+.fb-hint-detail{
+  margin-top:6px;font-size:13px;font-weight:600;opacity:.85;
+  padding-left:4px;border-left:3px solid currentColor;padding-left:8px;
+}
+
+/* card footer */
+.card-footer{
+  padding:.9rem 1.5rem;background:rgba(0,0,0,0.02);
+  border-top:1.5px solid rgba(0,0,0,0.05);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.card-score-display{font-size:14px;font-weight:800;color:var(--ink);}
+.check-all-btn{
+  padding:8px 20px;background:linear-gradient(135deg,#7c4dff,#00c853);color:#fff;
+  border:none;border-radius:10px;font-family:'Nunito',sans-serif;
+  font-size:13.5px;font-weight:800;cursor:pointer;
+  transition:opacity .15s,transform .1s;box-shadow:0 3px 12px rgba(124,77,255,0.3);
+}
+.check-all-btn:hover{opacity:.9;}
+.check-all-btn:active{transform:scale(.96);}
+.check-all-btn:disabled{background:#ccc;box-shadow:none;cursor:default;}
+
+/* ── CELEBRATION ── */
+.celebration{
+  max-width:680px;margin:0 auto;padding:0 1rem 2rem;display:none;
+}
+.celebration.show{display:block;}
+.cel-box{
+  background:var(--surface);border-radius:var(--radius);
+  padding:2.5rem 2rem;text-align:center;box-shadow:var(--shadow);
+  border:3px solid #7c4dff;
+}
+.cel-box .trophies{font-size:3rem;margin-bottom:.5rem;animation:bounce 1s ease infinite alternate;}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+.cel-box h2{font-size:2rem;font-weight:900;color:var(--ink);margin-bottom:.5rem;}
+.cel-box p{color:#555;font-size:15px;line-height:1.7;margin-bottom:1rem;}
+.final-score{
+  display:inline-block;background:linear-gradient(135deg,#7c4dff,#00c853);
+  color:#fff;border-radius:40px;padding:8px 28px;font-size:1.2rem;font-weight:900;
+  box-shadow:0 4px 16px rgba(124,77,255,0.3);
+}
+
+/* ── CONFETTI CANVAS ── */
+#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
+
+/* ── FLOATING +XP ── */
+.xp-pop{
+  position:fixed;font-size:1.3rem;font-weight:900;color:#7c4dff;
+  pointer-events:none;z-index:1000;animation:floatUp .9s ease forwards;
+  text-shadow:0 2px 8px rgba(124,77,255,0.3);
+}
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-80px);opacity:0}
+}
+
+/* ── SHAKE ── */
+.shake{animation:shk .4s ease;}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+footer{text-align:center;font-size:12px;color:#aaa;padding:1rem;margin-top:1rem;}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div class="hero">
+  <div class="hero-badge">🎓 Grade 7 English · Kerala</div>
+  <h1>Phrases of the Day</h1>
+  <p>Write your own sentences using poetic time-of-day phrases and earn XP! Get instant feedback on every answer. 🚀</p>
+</div>
+
+<!-- XP BAR -->
+<div class="xp-wrap">
+  <div class="xp-top">
+    <span class="xp-label">⚡ Your XP</span>
+    <span class="xp-pts" id="xp-display">0 / 600 XP</span>
+  </div>
+  <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+</div>
+
+<!-- STREAK DOTS -->
+<div class="streak-bar" id="streak-bar">
+  <span style="font-size:13px;font-weight:800;color:#888;margin-right:4px;">Streak:</span>
+  <div class="streak-dot" id="sd0">🔥</div>
+  <div class="streak-dot" id="sd1">🔥</div>
+  <div class="streak-dot" id="sd2">🔥</div>
+  <div class="streak-dot" id="sd3">🔥</div>
+  <div class="streak-dot" id="sd4">🔥</div>
+  <div class="streak-dot" id="sd5">🔥</div>
+</div>
+
+<div class="instr">
+  <div class="instr-box">
+    <span class="ii">📖</span>
+    <div>
+      <b>How to play:</b> Each card shows a poetic phrase and one example sentence. Write <b>2 sentences of your own</b> using that phrase. A correct answer earns <b>100 XP</b>! Get a hint for 50 XP. Make sure your sentence has a <b>subject, verb</b>, and uses the phrase exactly.
+    </div>
+  </div>
+</div>
+
+<div class="cards">
+
+  <!-- ═══ CARD 1 — wee hours of the dawn ═══ -->
+  <div class="phrase-card" id="card-dawn">
+    <div class="card-banner dawn">
+      <span class="banner-icon">🌅</span>
+      <div class="banner-text">
+        <div class="phrase-name">"wee hours of the dawn"</div>
+        <div class="phrase-meaning">The very early hours before sunrise</div>
+      </div>
+      <div class="pts-badge">💎 200 XP</div>
+    </div>
+
+    <div class="example-strip">
+      <span class="ex-label">Example</span>
+      <span class="ex-text">The football players start their practice in the <b>wee hours of the dawn</b>.</span>
+    </div>
+
+    <div class="input-section">
+      <!-- Sentence 2 -->
+      <div class="input-row" id="row-dawn-2">
+        <div class="row-label"><span>✍️</span> Your sentence 2</div>
+        <div class="textarea-wrap">
+          <textarea class="sent" id="ta-dawn-2" placeholder="Write a sentence using 'wee hours of the dawn'…" rows="2" oninput="onType(this,'dawn-2')"></textarea>
+          <span class="char-count" id="cc-dawn-2">0</span>
+        </div>
+        <div class="btn-row">
+          <button class="check-btn" id="btn-dawn-2" onclick="checkIt('dawn-2','wee hours of the dawn')">✅ Check</button>
+          <button class="retry-btn" id="retry-dawn-2" onclick="retryIt('dawn-2')">🔄 Try again</button>
+        </div>
+        <div class="fb-bubble" id="fb-dawn-2"></div>
+      </div>
+      <!-- Sentence 3 -->
+      <div class="input-row" id="row-dawn-3">
+        <div class="row-label"><span>✍️</span> Your sentence 3</div>
+        <div class="textarea-wrap">
+          <textarea class="sent" id="ta-dawn-3" placeholder="Write another sentence using 'wee hours of the dawn'…" rows="2" oninput="onType(this,'dawn-3')"></textarea>
+          <span class="char-count" id="cc-dawn-3">0</span>
+        </div>
+        <div class="btn-row">
+          <button class="check-btn" id="btn-dawn-3" onclick="checkIt('dawn-3','wee hours of the dawn')">✅ Check</button>
+          <button class="retry-btn" id="retry-dawn-3" onclick="retryIt('dawn-3')">🔄 Try again</button>
+        </div>
+        <div class="fb-bubble" id="fb-dawn-3"></div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-score-display" id="score-dawn">⭐ 0 / 2 correct</div>
+      <button class="check-all-btn" onclick="checkAll('dawn','wee hours of the dawn')">Check Both ✓</button>
+    </div>
+  </div>
+
+  <!-- ═══ CARD 2 — blazing noon ═══ -->
+  <div class="phrase-card" id="card-noon">
+    <div class="card-banner noon">
+      <span class="banner-icon">☀️</span>
+      <div class="banner-text">
+        <div class="phrase-name">"blazing noon"</div>
+        <div class="phrase-meaning">The intensely hot midday sun</div>
+      </div>
+      <div class="pts-badge">💎 200 XP</div>
+    </div>
+
+    <div class="example-strip">
+      <span class="ex-label">Example</span>
+      <span class="ex-text">The roads were empty in the <b>blazing noon</b>.</span>
+    </div>
+
+    <div class="input-section">
+      <div class="input-row" id="row-noon-2">
+        <div class="row-label"><span>✍️</span> Your sentence 2</div>
+        <div class="textarea-wrap">
+          <textarea class="sent" id="ta-noon-2" placeholder="Write a sentence using 'blazing noon'…" rows="2" oninput="onType(this,'noon-2')"></textarea>
+          <span class="char-count" id="cc-noon-2">0</span>
+        </div>
+        <div class="btn-row">
+          <button class="check-btn" id="btn-noon-2" onclick="checkIt('noon-2','blazing noon')">✅ Check</button>
+          <button class="retry-btn" id="retry-noon-2" onclick="retryIt('noon-2')">🔄 Try again</button>
+        </div>
+        <div class="fb-bubble" id="fb-noon-2"></div>
+      </div>
+      <div class="input-row" id="row-noon-3">
+        <div class="row-label"><span>✍️</span> Your sentence 3</div>
+        <div class="textarea-wrap">
+          <textarea class="sent" id="ta-noon-3" placeholder="Write another sentence using 'blazing noon'…" rows="2" oninput="onType(this,'noon-3')"></textarea>
+          <span class="char-count" id="cc-noon-3">0</span>
+        </div>
+        <div class="btn-row">
+          <button class="check-btn" id="btn-noon-3" onclick="checkIt('noon-3','blazing noon')">✅ Check</button>
+          <button class="retry-btn" id="retry-noon-3" onclick="retryIt('noon-3')">🔄 Try again</button>
+        </div>
+        <div class="fb-bubble" id="fb-noon-3"></div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-score-display" id="score-noon">⭐ 0 / 2 correct</div>
+      <button class="check-all-btn" onclick="checkAll('noon','blazing noon')">Check Both ✓</button>
+    </div>
+  </div>
+
+  <!-- ═══ CARD 3 — gathering dusk ═══ -->
+  <div class="phrase-card" id="card-dusk">
+    <div class="card-banner dusk">
+      <span class="banner-icon">🌆</span>
+      <div class="banner-text">
+        <div class="phrase-name">"gathering dusk"</div>
+        <div class="phrase-meaning">The slowly deepening darkness of evening</div>
+      </div>
+      <div class="pts-badge">💎 200 XP</div>
+    </div>
+
+    <div class="example-strip">
+      <span class="ex-label">Example</span>
+      <span class="ex-text">The birds were returning to their nest in the <b>gathering dusk</b>.</span>
+    </div>
+
+    <div class="input-section">
+      <div class="input-row" id="row-dusk-2">
+        <div class="row-label"><span>✍️</span> Your sentence 2</div>
+        <div class="textarea-wrap">
+          <textarea class="sent" id="ta-dusk-2" placeholder="Write a sentence using 'gathering dusk'…" rows="2" oninput="onType(this,'dusk-2')"></textarea>
+          <span class="char-count" id="cc-dusk-2">0</span>
+        </div>
+        <div class="btn-row">
+          <button class="check-btn" id="btn-dusk-2" onclick="checkIt('dusk-2','gathering dusk')">✅ Check</button>
+          <button class="retry-btn" id="retry-dusk-2" onclick="retryIt('dusk-2')">🔄 Try again</button>
+        </div>
+        <div class="fb-bubble" id="fb-dusk-2"></div>
+      </div>
+      <div class="input-row" id="row-dusk-3">
+        <div class="row-label"><span>✍️</span> Your sentence 3</div>
+        <div class="textarea-wrap">
+          <textarea class="sent" id="ta-dusk-3" placeholder="Write another sentence using 'gathering dusk'…" rows="2" oninput="onType(this,'dusk-3')"></textarea>
+          <span class="char-count" id="cc-dusk-3">0</span>
+        </div>
+        <div class="btn-row">
+          <button class="check-btn" id="btn-dusk-3" onclick="checkIt('dusk-3','gathering dusk')">✅ Check</button>
+          <button class="retry-btn" id="retry-dusk-3" onclick="retryIt('dusk-3')">🔄 Try again</button>
+        </div>
+        <div class="fb-bubble" id="fb-dusk-3"></div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-score-display" id="score-dusk">⭐ 0 / 2 correct</div>
+      <button class="check-all-btn" onclick="checkAll('dusk','gathering dusk')">Check Both ✓</button>
+    </div>
+  </div>
+
+</div><!-- /cards -->
+
+<!-- CELEBRATION -->
+<div class="celebration" id="celebration">
+  <div class="cel-box">
+    <div class="trophies">🏆🌟🎉</div>
+    <h2>You're Amazing!</h2>
+    <p>You completed all the phrase exercises!<br>Keep writing beautiful sentences like these. 🌈</p>
+    <div class="final-score" id="final-score">Total: 0 / 600 XP</div>
+  </div>
+</div>
+
+<footer>Grade 7 English · Kerala Curriculum · 100% Offline Smart Feedback</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────────────────────
+let totalXP = 0;
+const MAX_XP = 600;
+const done = {}; // idx -> true when locked correct
+
+// ─────────────────────────────────────────────────────────────
+//  EVALUATION ENGINE
+//  Returns {level:'ok'|'hint'|'bad', headline, detail}
+// ─────────────────────────────────────────────────────────────
+const PHRASES = {
+  "wee hours of the dawn": {
+    variants: ["wee hours of the dawn","wee hours of dawn","wee hours"],
+    meaning: "very early morning, before sunrise",
+    tips: [
+      "Example: 'My mother wakes up in the wee hours of the dawn to prepare breakfast.'",
+      "Example: 'The milkman delivers milk in the wee hours of the dawn.'",
+      "Example: 'In the wee hours of the dawn, the village was wrapped in silence.'"
+    ]
+  },
+  "blazing noon": {
+    variants: ["blazing noon"],
+    meaning: "the very hot middle of the day",
+    tips: [
+      "Example: 'The farmers sought shade under the trees during the blazing noon.'",
+      "Example: 'In the blazing noon, even the streets of the city looked deserted.'",
+      "Example: 'The children stayed indoors during the blazing noon to avoid the heat.'"
+    ]
+  },
+  "gathering dusk": {
+    variants: ["gathering dusk"],
+    meaning: "the slowly spreading darkness of evening",
+    tips: [
+      "Example: 'The children hurried home as the gathering dusk fell over the village.'",
+      "Example: 'Lamps were lit all over the town in the gathering dusk.'",
+      "Example: 'The stars began to appear one by one in the gathering dusk.'"
+    ]
+  }
+};
+
+// Common English verbs (past + present) for verb detection
+const VERB_RE = /\b(is|are|was|were|am|be|been|being|have|has|had|do|does|did|will|would|can|could|should|shall|may|might|must|go|goes|went|run|runs|ran|play|plays|played|wake|wakes|woke|start|starts|started|sit|sits|sat|come|comes|came|walk|walks|walked|sleep|sleeps|slept|work|works|worked|study|studies|studied|return|returns|returned|begin|begins|began|arrive|arrives|arrived|leave|leaves|left|feel|feels|felt|look|looks|looked|stand|stands|stood|wait|waits|waited|see|sees|saw|know|knows|knew|think|thinks|thought|say|says|said|make|makes|made|take|takes|took|get|gets|got|give|gives|gave|find|finds|found|keep|keeps|kept|bring|brings|brought|call|calls|called|turn|turns|turned|move|moves|moved|shine|shines|shone|rise|rises|rose|fall|falls|fell|spread|spreads|spread|cover|covers|covered|fill|fills|filled|grow|grows|grew|fly|flies|flew|sing|sings|sang|cook|cooks|cooked|pray|prays|prayed|step|steps|stepped|hear|hears|heard|stay|stays|stayed|remain|remains|remained|appear|appears|appeared|seem|seems|seemed|light|lights|lit|rush|rushes|rushed|hurry|hurries|hurried|drive|drives|drove|carry|carries|carried|swim|swims|swam|ride|rides|rode|buy|buys|bought|sell|sells|sold|open|opens|opened|close|closes|closed|shut|shuts|swept|sweep|sweeps|finish|finishes|finished|stop|stops|stopped|smell|smells|smelled|join|joins|joined|gather|gathers|gathered|reach|reaches|reached|help|helps|helped|watch|watches|watched|read|reads|ran|catch|catches|caught|hold|holds|held|set|sets|pull|pulls|pulled|push|pushes|pushed|draw|draws|drew|write|writes|wrote|send|sends|sent|meet|meets|met|sit|eat|eats|ate|drink|drinks|drank|climb|climbs|climbed|jump|jumps|jumped|place|places|placed|show|shows|showed|tell|tells|told|need|needs|needed|love|loves|loved|like|likes|liked|live|lives|lived|die|dies|died|follow|follows|followed|lead|leads|led|teach|teaches|taught|learn|learns|learned|build|builds|built|break|breaks|broke|cut|cuts|cross|crosses|crossed)\b/i;
+
+function norm(s){ return s.toLowerCase().replace(/[''`]/g,"'").replace(/\s+/g,' ').trim(); }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+const PRAISE = [
+  "🎉 Excellent! Perfect use of the phrase!",
+  "🌟 Brilliant sentence! Well done!",
+  "✨ Outstanding! That's a great sentence!",
+  "🏆 Superb! You really understand the phrase!",
+  "🎊 Fantastic work! Keep it up!",
+  "💯 Perfect! Your sentence is very well written!",
+  "🌈 Wonderful! That is a beautiful sentence!"
+];
+
+function evaluate(raw, phraseKey) {
+  const s = norm(raw);
+  const p = PHRASES[phraseKey];
+  const found = p.variants.some(v => s.includes(v));
+
+  // ── FAIL: phrase missing ──
+  if (!found) {
+    return {
+      level:'bad',
+      headline:'❌ Phrase not found in your sentence.',
+      detail:`Make sure you write exactly: "<b>${phraseKey}</b>" somewhere in your sentence.\n${pick(p.tips)}`
+    };
+  }
+
+  // ── FAIL: too short (fewer than 6 words) ──
+  const words = s.split(/\s+/).filter(w=>w.length>0);
+  if (words.length < 6) {
+    return {
+      level:'bad',
+      headline:'❌ Your sentence is too short.',
+      detail:`Write a complete sentence with a subject and a verb. It should be at least 6–8 words.\n${pick(p.tips)}`
+    };
+  }
+
+  // ── FAIL: no verb detected ──
+  if (!VERB_RE.test(s)) {
+    return {
+      level:'hint',
+      headline:'💡 Almost! Your sentence needs a verb.',
+      detail:`A sentence must have an action word (verb) like: <i>goes, was, started, returned, heard, felt…</i>\n${pick(p.tips)}`
+    };
+  }
+
+  // ── FAIL: no subject — check for capital start or personal pronoun ──
+  const firstWord = words[0].replace(/[^a-z]/gi,'').toLowerCase();
+  const pronouns = ['i','he','she','they','we','it','the','a','an','my','our','his','her','their','its','this','that','these','those','one','some','all','many','few','no','every','each'];
+  const startsOk = /^[A-Z]/.test(raw.trim()) || pronouns.includes(firstWord);
+  if (!startsOk) {
+    return {
+      level:'hint',
+      headline:'💡 Good try! Start your sentence with a capital letter.',
+      detail:`Every sentence begins with a capital letter and ends with a full stop (.)\n${pick(p.tips)}`
+    };
+  }
+
+  // ── WARN: ends without punctuation ──
+  const endsOk = /[.!?]$/.test(raw.trim());
+
+  // ── PASS ──
+  const praise = pick(PRAISE);
+  const punctNote = endsOk ? '' : ' (Tip: remember to end your sentence with a full stop .)';
+  return {
+    level:'ok',
+    headline: praise,
+    detail: `Your sentence uses "<b>${phraseKey}</b>" correctly — great writing!${punctNote}`
+  };
+}
+
+// ─────────────────────────────────────────────────────────────
+//  UI HELPERS
+// ─────────────────────────────────────────────────────────────
+function onType(el, idx) {
+  const val = el.value;
+  el.style.height='auto';
+  el.style.height=el.scrollHeight+'px';
+  const cc = document.getElementById('cc-'+idx);
+  if(cc) cc.textContent = val.length;
+}
+
+function setXP(xp) {
+  totalXP = Math.min(xp, MAX_XP);
+  document.getElementById('xp-display').textContent = totalXP + ' / ' + MAX_XP + ' XP';
+  document.getElementById('xp-fill').style.width = (totalXP/MAX_XP*100) + '%';
+}
+
+function addXP(amount, el) {
+  setXP(totalXP + amount);
+  // floating pop
+  const pop = document.createElement('div');
+  pop.className = 'xp-pop';
+  pop.textContent = '+' + amount + ' XP ⚡';
+  const rect = el.getBoundingClientRect();
+  pop.style.left = (rect.left + rect.width/2 - 30) + 'px';
+  pop.style.top = (rect.top + window.scrollY - 10) + 'px';
+  document.body.appendChild(pop);
+  setTimeout(() => pop.remove(), 950);
+}
+
+let streakCount = 0;
+function addStreak() {
+  const dot = document.getElementById('sd' + streakCount);
+  if(dot) dot.classList.add('lit');
+  streakCount++;
+}
+
+function updateCardScore(card) {
+  const ids = [card+'-2', card+'-3'];
+  const correct = ids.filter(i => done[i]).length;
+  const el = document.getElementById('score-'+card);
+  const stars = correct===2?'⭐⭐':correct===1?'⭐':'☆';
+  el.textContent = stars + ' ' + correct + ' / 2 correct';
+}
+
+function checkCompletion() {
+  const all = ['dawn-2','dawn-3','noon-2','noon-3','dusk-2','dusk-3'];
+  if(all.every(i => done[i])) {
+    setTimeout(()=>{
+      document.getElementById('final-score').textContent = 'Total: ' + totalXP + ' / ' + MAX_XP + ' XP 🏆';
+      document.getElementById('celebration').classList.add('show');
+      document.getElementById('celebration').scrollIntoView({behavior:'smooth'});
+      launchConfetti();
+    }, 700);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+//  MAIN CHECK
+// ─────────────────────────────────────────────────────────────
+function checkIt(idx, phraseKey) {
+  const ta = document.getElementById('ta-'+idx);
+  const fb = document.getElementById('fb-'+idx);
+  const btn = document.getElementById('btn-'+idx);
+  const retryBtn = document.getElementById('retry-'+idx);
+  const raw = ta.value.trim();
+
+  if (!raw) {
+    ta.classList.add('shake');
+    ta.addEventListener('animationend', ()=>ta.classList.remove('shake'),{once:true});
+    ta.focus();
+    return;
+  }
+
+  const {level, headline, detail} = evaluate(raw, phraseKey);
+
+  // style textarea
+  ta.classList.remove('ok','hint','bad');
+  ta.classList.add(level);
+
+  // show feedback
+  fb.className = 'fb-bubble ' + level;
+  fb.innerHTML = `<div>${headline}</div><div class="fb-hint-detail">${detail}</div>`;
+
+  if(level === 'ok') {
+    // lock it
+    ta.disabled = true;
+    btn.disabled = true;
+    retryBtn.classList.remove('show');
+    done[idx] = true;
+    addXP(100, btn);
+    addStreak();
+    const card = idx.split('-')[0];
+    updateCardScore(card);
+    checkCompletion();
+  } else {
+    // allow retry
+    retryBtn.classList.add('show');
+  }
+}
+
+function checkAll(card, phraseKey) {
+  ['2','3'].forEach(n => {
+    const idx = card+'-'+n;
+    if(!done[idx]) checkIt(idx, phraseKey);
+  });
+}
+
+function retryIt(idx) {
+  const ta = document.getElementById('ta-'+idx);
+  const fb = document.getElementById('fb-'+idx);
+  const btn = document.getElementById('btn-'+idx);
+  const retryBtn = document.getElementById('retry-'+idx);
+  ta.classList.remove('ok','hint','bad');
+  ta.disabled = false;
+  btn.disabled = false;
+  fb.className = 'fb-bubble';
+  fb.innerHTML = '';
+  retryBtn.classList.remove('show');
+  ta.focus();
+}
+
+// ─────────────────────────────────────────────────────────────
+//  CONFETTI
+// ─────────────────────────────────────────────────────────────
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const pieces = Array.from({length:160}, () => ({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height - canvas.height,
+    r: Math.random()*8+4,
+    d: Math.random()*160+80,
+    color: ['#7c4dff','#00c853','#ff6b35','#ffca28','#f06292','#29b6f6'][Math.floor(Math.random()*6)],
+    tilt: Math.random()*10-10,
+    tiltAngle:0,
+    tiltSpeed:Math.random()*.1+.05
+  }));
+  let angle=0, frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    angle+=.01;
+    pieces.forEach(p=>{
+      p.tiltAngle+=p.tiltSpeed;
+      p.y+=(Math.cos(angle+p.d)+1+p.r/2)*1.5;
+      p.x+=Math.sin(angle)*1.5;
+      p.tilt=Math.sin(p.tiltAngle)*12;
+      ctx.beginPath();
+      ctx.lineWidth=p.r/2;
+      ctx.strokeStyle=p.color;
+      ctx.moveTo(p.x+p.tilt+p.r/4, p.y);
+      ctx.lineTo(p.x+p.tilt, p.y+p.tilt+p.r/4);
+      ctx.stroke();
+    });
+    frame++;
+    if(frame<220) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+</script>
+</body>
+</html>
