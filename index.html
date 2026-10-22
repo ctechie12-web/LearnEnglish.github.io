@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrases of the Day – Grade 7 English</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --dawn:#ffd9a0;--dawn2:#ff8a5b;--dawn-txt:#5c2400;
+    --noon:#fff3b0;--noon2:#ffb300;--noon-txt:#5d3d00;
+      --dusk:#cdb4f9;--dusk2:#6a3de8;--dusk-txt:#2a0e6e;
+        --green:#00c853;--green-bg:#e3fbe9;--green-dark:#0d6e2f;
+          --amber:#ff8f00;--amber-bg:#fff4dc;--amber-dark:#7a4b00;
+            --red:#e6342f;--red-bg:#ffe9e8;--red-dark:#a31f1c;
+              --ink:#181826;--surface:#fff;--radius:20px;
+                --shadow:0 10px 36px rgba(40,20,80,0.12);
+                }
+
+                body{
+                  font-family:'Plus Jakarta Sans',sans-serif;
+                    min-height:100vh;color:var(--ink);padding-bottom:5rem;
+                      position:relative;overflow-x:hidden;
+                        line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+                        }
+
+                        .sky-bg{
+                          position:fixed;inset:0;z-index:-2;
+                            background:#f4f7fb;
+                            }
+
+                            .sun-glow{
+                              position:fixed;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;
+                                background:radial-gradient(circle, rgba(255,224,107,0.95) 0%, rgba(255,193,71,0.45) 45%, transparent 70%);
+                                  z-index:-2;filter:blur(2px);animation:sunPulse 8s ease-in-out infinite;
+                                  }
+                                  @keyframes sunPulse{0%,100%{opacity:0.85;transform:scale(1);}50%{opacity:1;transform:scale(1.06);}}
+
+                                  .moon-glow{
+                                    position:fixed;bottom:-100px;left:-100px;width:360px;height:360px;border-radius:50%;
+                                      background:radial-gradient(circle, rgba(120,180,250,0.55) 0%, rgba(20,70,140,0.3) 50%, transparent 75%);
+                                        z-index:-2;filter:blur(4px);
+                                        }
+
+                                        .cloud{
+                                          position:fixed;z-index:-1;opacity:0.55;pointer-events:none;
+                                            background:#fff;border-radius:50px;filter:blur(1px);
+                                              animation:cloudFloat linear infinite;
