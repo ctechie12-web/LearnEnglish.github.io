@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile to Biographical Narrative – Grade 7 English</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue-deep:#0a3163;--blue-mid:#1a5cad;--blue-light:#2f7fd1;
+  --gold:#ffd76a;--gold-dark:#f0b800;--gold-pale:#fffbe8;
+  --ink:#181826;--surface:#fff;--radius:20px;
+  --shadow:0 10px 36px rgba(10,49,99,0.13);
+  --green:#00c853;--green-bg:#e3fbe9;--green-dark:#0d6e2f;
+  --amber:#ff8f00;--amber-bg:#fff4dc;--amber-dark:#7a4b00;
+  --red:#e6342f;--red-bg:#ffe9e8;--red-dark:#a31f1c;
+  --purple:#6a3de8;--purple-bg:#f3f0ff;--purple-dark:#3d0f99;
+  --teal:#0097a7;--teal-bg:#e0f7fa;--teal-dark:#004d56;
+  --orange:#e65100;--orange-bg:#fff3e0;--orange-dark:#7a2900;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;color:var(--ink);padding-bottom:5rem;position:relative;overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+
+/* ── Background ── */
+.sky-bg{position:fixed;inset:0;z-index:-2;background:#f4f7fb;}
+.sun-glow{position:fixed;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,224,107,0.95) 0%,rgba(255,193,71,0.45) 45%,transparent 70%);z-index:-2;filter:blur(2px);animation:sunPulse 8s ease-in-out infinite;}
+@keyframes sunPulse{0%,100%{opacity:.85;transform:scale(1);}50%{opacity:1;transform:scale(1.06);}}
+.moon-glow{position:fixed;bottom:-100px;left:-100px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(120,180,250,0.55) 0%,rgba(20,70,140,0.3) 50%,transparent 75%);z-index:-2;filter:blur(4px);}
+.cloud{position:fixed;z-index:-1;opacity:.45;pointer-events:none;background:#fff;border-radius:50px;filter:blur(1px);animation:cloudFloat linear infinite;}
+@keyframes cloudFloat{from{transform:translateX(-120%);}to{transform:translateX(110vw);}}
+.cloud::before,.cloud::after{content:'';position:absolute;background:#fff;border-radius:50%;}
+.cloud::before{width:55%;height:160%;top:-40%;left:15%;}
+.cloud::after{width:40%;height:130%;top:-20%;right:10%;}
+.c1{width:140px;height:38px;top:12%;animation-duration:38s;animation-delay:-8s;}
+.c2{width:90px;height:26px;top:28%;animation-duration:55s;animation-delay:-22s;}
+.c3{width:110px;height:32px;top:60%;animation-duration:46s;animation-delay:-5s;}
+.floaters{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+.fw{position:absolute;bottom:-2rem;font-family:'Fraunces',serif;font-weight:600;opacity:0;animation:floatUp linear infinite;}
+@keyframes floatUp{0%{opacity:0;transform:translateY(0) rotate(-6deg);}10%{opacity:.22;}85%{opacity:.15;}100%{opacity:0;transform:translateY(-105vh) rotate(8deg);}}
+.stars{position:fixed;inset:0;z-index:-1;pointer-events:none;}
+.star{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,215,106,0.9),rgba(255,215,106,0));animation:twinkle ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(1);}50%{opacity:.9;transform:scale(1.4);}}
+
+/* ── Layout ── */
+.container{max-width:820px;margin:0 auto;padding:0 1.2rem;}
+
+/* ── Hero ── */
+.hero{text-align:center;padding:1.4rem 1rem 1rem;position:relative;display:flex;flex-direction:column;align-items:center;}
+.hero-badge{display:inline-block;background:rgba(10,49,99,0.88);color:var(--gold);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.38rem 1rem;border-radius:40px;border:1px solid rgba(255,215,106,0.4);margin-bottom:.7rem;}
+.hero h1{font-size:clamp(2.2rem,7vw,3.6rem);font-weight:700;font-family:'Playfair Display',serif;font-style:italic;color:var(--blue-deep);text-shadow:0 2px 0 rgba(255,215,106,0.6),0 4px 18px rgba(10,49,99,0.3);}
+.hero h1::after{content:'';display:block;width:64px;height:4px;margin:.5rem auto 0;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--blue-light),var(--blue-deep));}
+.hero p{font-size:15px;color:#5b6472;max-width:560px;margin:.6rem auto 0;line-height:1.7;font-weight:600;text-align:center;}
+
+/* ── HUD ── */
+.hud{background:rgba(255,255,255,0.92);border-radius:16px;padding:.8rem 1.2rem;box-shadow:0 4px 18px rgba(10,49,99,0.1);margin-bottom:1.4rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;}
+.xp-section{flex:1;min-width:160px;}
+.xp-label{font-size:12px;font-weight:700;color:var(--blue-deep);margin-bottom:.3rem;letter-spacing:.04em;}
+.xp-track{height:12px;background:#e2eaf6;border-radius:10px;overflow:hidden;}
+.xp-fill{height:100%;border-radius:10px;transition:width .6s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--blue-deep),var(--blue-light),var(--gold));box-shadow:0 0 10px rgba(255,215,106,0.5);}
+.xp-count{font-size:12px;font-weight:700;color:var(--blue-deep);margin-top:.25rem;}
+.streak-section{display:flex;flex-direction:column;align-items:center;gap:.3rem;}
+.streak-label{font-size:12px;font-weight:700;color:var(--blue-deep);}
+.streak-dots{display:flex;gap:.4rem;}
+.streak-dot{width:14px;height:14px;border-radius:50%;background:#e2eaf6;border:2px solid #c8d8ee;transition:all .4s ease;}
+.streak-dot.lit{background:linear-gradient(135deg,var(--gold),var(--blue-light));border-color:var(--gold);box-shadow:0 0 8px rgba(255,215,106,0.7);}
+
+/* ── Phase Headers ── */
+.phase-header{display:flex;align-items:center;gap:.8rem;margin:2rem 0 1rem;}
+.phase-badge{background:linear-gradient(135deg,var(--blue-deep),var(--blue-light));color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;padding:.35rem .8rem;border-radius:30px;white-space:nowrap;text-transform:uppercase;box-shadow:0 3px 10px rgba(10,49,99,0.2);}
+.phase-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:var(--blue-deep);}
+
+/* ── Cards ── */
+.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:1.4rem 1.6rem;margin-bottom:1.2rem;border:1.5px solid rgba(10,49,99,0.07);}
+
+/* ── Engage ── */
+.engage-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;}
+@media(max-width:520px){.engage-grid{grid-template-columns:1fr;}}
+.profile-card{background:var(--gold-pale);border:2px dashed var(--gold-dark);border-radius:14px;padding:1rem 1.1rem;}
+.profile-card h4{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;color:var(--blue-deep);margin-bottom:.6rem;}
+.profile-card ul{list-style:none;padding:0;}
+.profile-card ul li{font-size:13.5px;color:#3a4456;padding:.2rem 0;border-bottom:1px solid rgba(255,215,106,0.4);}
+.profile-card ul li:last-child{border-bottom:none;}
+.profile-card ul li span{font-weight:700;color:var(--blue-deep);}
+.narrative-card{background:linear-gradient(135deg,#eaf3ff,#f0f7ff);border:2px solid var(--blue-light);border-radius:14px;padding:1rem 1.1rem;}
+.narrative-card h4{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;color:var(--blue-deep);margin-bottom:.6rem;}
+.narrative-card p{font-size:13.5px;color:#2a3a52;line-height:1.75;font-style:italic;}
+.prompt-list{list-style:none;padding:0;margin:.8rem 0;}
+.prompt-list li{display:flex;gap:.7rem;align-items:flex-start;font-size:14px;color:#3a4456;padding:.45rem 0;border-bottom:1px solid #eef2f8;}
+.prompt-list li:last-child{border-bottom:none;}
+.prompt-num{min-width:24px;height:24px;background:var(--blue-deep);color:#fff;border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.takeaway{background:rgba(10,49,99,0.07);border-left:4px solid var(--gold-dark);border-radius:0 10px 10px 0;padding:.7rem 1rem;margin-top:.8rem;font-size:13.5px;font-style:italic;color:var(--blue-deep);font-weight:600;}
+
+/* ── Station headers ── */
+.station-header{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem;}
+.station-letter{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#fff;box-shadow:0 4px 14px rgba(10,49,99,0.25);}
+.sl-a{background:linear-gradient(135deg,var(--blue-deep),var(--blue-light));}
+.sl-b{background:linear-gradient(135deg,var(--purple),#a78bfa);}
+.sl-c{background:linear-gradient(135deg,var(--teal),#26c6da);}
+.sl-d{background:linear-gradient(135deg,var(--orange),#ff8a65);}
+.station-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--blue-deep);}
+.station-subtitle{font-size:12px;color:#7a8a9e;font-weight:600;}
+
+/* ── Example mini-cards ── */
+.ex-list{list-style:none;padding:0;margin:.8rem 0;}
+.ex-item{display:flex;gap:.8rem;align-items:flex-start;padding:.7rem .9rem;border-radius:12px;margin-bottom:.55rem;}
+.ex-item-a{background:#eaf3ff;border:1.5px solid #b3d4f5;}
+.ex-item-b{background:var(--purple-bg);border:1.5px solid #c5b8f9;}
+.ex-item-c{background:var(--teal-bg);border:1.5px solid #80deea;}
+.ex-item-d{background:var(--orange-bg);border:1.5px solid #ffcc80;}
+.ex-emoji{font-size:1.35rem;flex-shrink:0;margin-top:.1rem;}
+.ex-text{font-size:14px;color:#2a3a52;line-height:1.7;}
+.ex-text .kw{font-weight:800;color:var(--blue-deep);background:rgba(255,215,106,0.45);padding:1px .35rem;border-radius:5px;}
+.ex-text .kw-p{font-weight:800;color:var(--purple-dark);background:rgba(106,61,232,0.1);padding:1px .35rem;border-radius:5px;}
+.ex-text .kw-t{font-weight:800;color:var(--teal-dark);background:rgba(0,151,167,0.1);padding:1px .35rem;border-radius:5px;}
+.ex-text .kw-o{font-weight:800;color:var(--orange-dark);background:rgba(230,81,0,0.1);padding:1px .35rem;border-radius:5px;}
+.ex-text .ex-blank{margin:0 .2rem;vertical-align:baseline;font-size:14px;}
+.ex-note{display:none;margin-top:.3rem;}
+.ex-item.done .ex-note{display:block;animation:noteIn .35s ease;}
+.ex-item.done{border-color:var(--green);}
+@keyframes noteIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+
+/* ── Case pairs (existing pattern lines) ── */
+.case-pairs{margin:.8rem 0;}
+.case-pair{display:grid;grid-template-columns:auto 1fr;gap:.4rem .8rem;font-size:13.5px;margin-bottom:.6rem;align-items:start;}
+.case-label{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--blue-light);background:#eaf3ff;padding:.18rem .55rem;border-radius:20px;white-space:nowrap;margin-top:.15rem;}
+.case-text{color:#2a3a52;line-height:1.6;}
+.case-text .kw{font-weight:800;color:var(--blue-deep);background:rgba(255,215,106,0.35);padding:0 .25rem;border-radius:4px;}
+
+/* ── Rule toggles ── */
+.rule-toggle{display:flex;align-items:center;gap:.5rem;cursor:pointer;background:none;border:none;padding:.55rem .8rem;font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;color:var(--blue-deep);border-radius:10px;transition:background .2s;width:100%;text-align:left;margin-top:.6rem;}
+.rule-toggle:hover{background:rgba(10,49,99,0.06);}
+.rule-toggle .arrow{margin-left:auto;transition:transform .3s;font-size:.8rem;color:var(--blue-light);}
+.rule-toggle.open .arrow{transform:rotate(180deg);}
+.rule-panel{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;}
+.rule-panel.open{max-height:600px;padding-top:.4rem;}
+.rule-box{background:var(--gold-pale);border:1.5px dashed var(--gold-dark);border-radius:12px;padding:.85rem 1rem;}
+.rule-item{font-size:13.5px;color:#2a3a52;padding:.3rem 0;display:flex;gap:.6rem;}
+.rule-item .ri{font-weight:800;color:var(--blue-deep);min-width:66px;}
+
+/* ── Cloze Passage ── */
+.passage-text{font-size:15px;line-height:2.1;color:#2a3a52;background:linear-gradient(135deg,#f8fbff,#fafcff);border:1.5px solid #d0dff4;border-radius:14px;padding:1.2rem 1.4rem;margin:1rem 0;}
+.blank-wrap{display:inline-flex;flex-direction:column;align-items:center;margin:0 .15rem;vertical-align:middle;}
+.blank-num{font-size:10px;font-weight:800;color:var(--blue-light);margin-bottom:.1rem;}
+.blank-select{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;border:2px solid var(--blue-light);border-radius:8px;padding:.2rem .45rem;background:#fff;color:var(--blue-deep);cursor:pointer;transition:all .25s;outline:none;}
+.blank-select:focus{border-color:var(--gold-dark);box-shadow:0 0 0 3px rgba(255,215,106,0.3);}
+.blank-select.correct{border-color:var(--green);background:var(--green-bg);color:var(--green-dark);}
+.blank-select.wrong{border-color:var(--red);background:var(--red-bg);color:var(--red-dark);}
+.check-btn{display:block;margin:1rem auto 0;background:linear-gradient(135deg,var(--blue-deep),var(--blue-light));color:#fff;border:none;border-radius:30px;padding:.7rem 2rem;font-size:15px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 6px 20px rgba(10,49,99,0.25);transition:transform .2s,box-shadow .2s;}
+.check-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(10,49,99,0.3);}
+.check-btn:active{transform:translateY(0);}
+.feedback-strip{display:none;border-radius:12px;padding:.8rem 1.1rem;margin-top:.8rem;font-size:14px;font-weight:600;}
+.feedback-strip.show{display:flex;gap:.6rem;align-items:flex-start;}
+.feedback-strip.pass{background:var(--green-bg);color:var(--green-dark);border:1.5px solid var(--green);}
+.feedback-strip.partial{background:var(--amber-bg);color:var(--amber-dark);border:1.5px solid var(--amber);}
+
+/* ── Tagore Writing ── */
+.tagore-profile{background:linear-gradient(135deg,#fff8e8,#fffde4);border:2px solid var(--gold-dark);border-radius:16px;padding:1.1rem 1.3rem;margin:1rem 0;}
+.tagore-profile h4{font-family:'Fraunces',serif;font-weight:700;color:var(--blue-deep);font-size:1rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem;}
+.tagore-profile table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.tagore-profile td{padding:.35rem .5rem;color:#2a3a52;border-bottom:1px solid rgba(255,215,106,0.5);}
+.tagore-profile td:first-child{font-weight:700;color:var(--blue-deep);width:42%;white-space:nowrap;}
+.tagore-profile tr:last-child td{border-bottom:none;}
+.writing-area{width:100%;min-height:130px;border:2px solid #c8d8ee;border-radius:14px;padding:1rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:14.5px;color:#2a3a52;background:#fafcff;resize:vertical;outline:none;transition:border-color .25s,box-shadow .25s;margin-top:.8rem;line-height:1.75;}
+.writing-area:focus{border-color:var(--blue-light);box-shadow:0 0 0 3px rgba(47,127,209,0.15);}
+.writing-meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#8a9ab0;margin-top:.35rem;}
+#word-count{font-weight:700;color:var(--blue-mid);}
+.writing-feedback{display:none;margin-top:.7rem;}
+.writing-feedback.show{display:block;}
+
+/* ── Smiley self-check ── */
+.smiley-section-label{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;color:var(--blue-deep);margin:.9rem 0 .45rem;padding-left:.3rem;display:flex;align-items:center;gap:.5rem;}
+.smiley-section-badge{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .65rem;border-radius:20px;white-space:nowrap;}
+.ssb-a{background:#eaf3ff;color:var(--blue-deep);}
+.ssb-b{background:var(--purple-bg);color:var(--purple-dark);}
+.ssb-c{background:var(--teal-bg);color:var(--teal-dark);}
+.criterion-row{background:#fff;border:1.5px solid #e2eaf6;border-radius:12px;padding:.75rem 1rem;margin-bottom:.6rem;display:flex;align-items:flex-start;gap:.8rem;}
+.criterion-row:hover{border-color:var(--blue-light);}
+.crit-text{flex:1;}
+.crit-title{font-size:14px;font-weight:700;color:var(--blue-deep);margin-bottom:.2rem;}
+.crit-detail{font-size:12.5px;color:#7a8a9e;line-height:1.6;}
+.crit-example{font-size:12px;color:var(--blue-mid);margin-top:.3rem;font-style:italic;background:#eaf3ff;padding:.3rem .6rem;border-radius:8px;display:inline-block;}
+.smiley-btns{display:flex;gap:.35rem;flex-shrink:0;}
+.smiley-btn{width:42px;height:42px;border-radius:10px;border:2px solid #d0dff4;background:#f4f7fb;font-size:1.3rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.smiley-btn:hover{border-color:var(--blue-light);transform:scale(1.1);}
+.smiley-btn.sel-3{background:var(--green-bg);border-color:var(--green);}
+.smiley-btn.sel-2{background:var(--amber-bg);border-color:var(--amber);}
+.smiley-btn.sel-1{background:var(--red-bg);border-color:var(--red);}
+.score-summary{display:none;background:linear-gradient(135deg,#eaf3ff,#f0f7ff);border:2px solid var(--blue-light);border-radius:14px;padding:1rem 1.2rem;margin-top:1rem;text-align:center;}
+.score-summary.show{display:block;}
+.score-total{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--blue-deep);}
+.score-label{font-size:13px;color:#5b6472;font-weight:600;margin-top:.2rem;}
+
+/* ── Unlock banner ── */
+.unlock-banner{display:none;background:linear-gradient(135deg,var(--blue-deep),#1a4a8a);color:#fff;border-radius:var(--radius);padding:1.4rem 1.6rem;margin-bottom:1.2rem;text-align:center;box-shadow:0 8px 28px rgba(10,49,99,0.3);}
+.unlock-banner.show{display:block;}
+.unlock-banner h3{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;}
+.unlock-banner p{font-size:13.5px;line-height:1.7;opacity:.9;}
+.grammar-summary{display:none;margin-top:1.6rem;}
+.grammar-summary.show{display:block;}
+.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:.8rem;}
+@media(max-width:540px){.rule-grid{grid-template-columns:1fr;}}
+.rule-tile{background:#fff;border:1.5px solid #e2eaf6;border-radius:14px;padding:.9rem 1.05rem;}
+.rule-tile .rt-head{font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;color:var(--blue-deep);margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem;}
+.rt-dot{width:10px;height:10px;border-radius:50%;background:var(--gold-dark);flex-shrink:0;}
+.rule-tile p{font-size:13px;color:#3a4456;line-height:1.6;}
+.rule-tile .example{font-style:italic;color:var(--blue-mid);font-size:12.5px;margin-top:.35rem;}
+
+/* ── Instruction box ── */
+.instruction-box{background:rgba(255,251,237,0.94);border:2px dashed var(--gold-dark);border-radius:14px;padding:.9rem 1.1rem;margin-bottom:1.1rem;font-size:13.5px;color:var(--blue-deep);font-weight:600;line-height:1.7;}
+
+/* ── Confetti & XP popup ── */
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:999;}
+.xp-pop{position:fixed;font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--gold);text-shadow:0 2px 8px rgba(10,49,99,0.4);pointer-events:none;z-index:998;animation:xpFloat 1.6s ease-out forwards;}
+@keyframes xpFloat{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-90px) scale(1.3);}}
+footer{height:1rem;}
+</style>
+</head>
+<body>
+
+<div class="sky-bg"></div><div class="sun-glow"></div><div class="moon-glow"></div>
+<div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+<div class="floaters" id="floaters"></div>
+<div class="stars" id="stars"></div>
+<canvas id="confetti"></canvas>
+
+<div class="container">
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-badge">English Reader VII · Activity 10 · Page 74</div>
+    <h1>Profile to Biographical Narrative</h1>
+    <p>Discover grammar rules from real examples and build<br>your own biographical paragraph. Earn XP at every step! 🎓</p>
+  </section>
+
+  <!-- ── HUD ── -->
+  <div class="hud">
+    <div class="xp-section">
+      <div class="xp-label">⚡ XP PROGRESS</div>
+      <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+      <div class="xp-count"><span id="xp-now">0</span> / 600 XP</div>
+    </div>
+    <div class="streak-section">
+      <div class="streak-label">🔥 STREAK</div>
+      <div class="streak-dots" id="streak-dots">
+        <div class="streak-dot"></div><div class="streak-dot"></div>
+        <div class="streak-dot"></div><div class="streak-dot"></div>
+        <div class="streak-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PHASE 1 — ENGAGE
+  ═══════════════════════════════════ -->
+  <div class="phase-header">
+    <span class="phase-badge">Phase 1 · Engage</span>
+    <span class="phase-title">Facts vs. Story — What's the Difference?</span>
+  </div>
+
+  <div class="instruction-box">
+    📌 Look at both cards below. Card A gives us facts. Card B is a real story. Can you spot the extra words in Card B that are NOT in Card A? Those small words do a big job!
+  </div>
+
+  <div class="card">
+    <div class="engage-grid">
+      <div class="profile-card">
+        <h4>📋 Card A — Just the Facts</h4>
+        <ul>
+          <li><span>Name:</span> APJ Abdul Kalam</li>
+          <li><span>Birth:</span> 15 October 1931, Rameswaram</li>
+          <li><span>Profession:</span> Aerospace scientist</li>
+        </ul>
+      </div>
+      <div class="narrative-card">
+        <h4>📖 Card B — A Real Story</h4>
+        <p>"APJ Abdul Kalam <strong>was</strong> born <strong>on</strong> 15 October 1931 <strong>in</strong> Rameswaram. He <strong>was</strong> <strong>an</strong> aerospace scientist."</p>
+      </div>
+    </div>
+
+    <ul class="prompt-list">
+      <li><div class="prompt-num">1</div><div>Look at Card B. Which words are in Card B but not in Card A? Notice them!</div></li>
+      <li><div class="prompt-num">2</div><div>Would Card A sound right as a story in a magazine? Why or why not?</div></li>
+      <li><div class="prompt-num">3</div><div>What job do the little words <em>was</em>, <em>on</em>, <em>in</em>, and <em>an</em> do in a sentence?</div></li>
+    </ul>
+
+    <div class="takeaway">💡 Fact boxes give us the information. Grammar words and linking words help us put that information into good sentences — like puzzle pieces fitting together!</div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PHASE 2 — EXPLORE & EXPLAIN
+  ═══════════════════════════════════ -->
+  <div class="phase-header">
+    <span class="phase-badge">Phase 2 · Explore &amp; Explain</span>
+    <span class="phase-title">Discovery Stations — Be a Grammar Detective!</span>
+  </div>
+
+  <div class="instruction-box">
+    📌 Visit each Station in order. In each example, <strong>choose the correct word</strong> from the drop-down — it turns <strong style="color:#0d6e2f">green</strong> if you are right and <strong style="color:#a31f1c">red</strong> if not. Spot the pattern, then click <strong>Reveal My Rule</strong> to check your discovery and earn XP!
+  </div>
+
+  <!-- ─── Station A ─── -->
+  <div class="card">
+    <div class="station-header">
+      <div class="station-letter sl-a">A</div>
+      <div>
+        <div class="station-title">When Do We Use On, In, and To?</div>
+        <div class="station-subtitle">Prepositions — on / in / to</div>
+      </div>
+    </div>
+
+    <!-- 3 discovery examples -->
+    <ul class="ex-list">
+      <li class="ex-item ex-item-a">
+        <span class="ex-emoji">📅</span>
+        <div class="ex-text">
+          Sachin Tendulkar was born <select class="blank-select ex-blank" data-ans="on" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="in">in</option><option value="on">on</option><option value="to">to</option></select> 24 April 1973.<br>
+          <em class="ex-note" style="color:#5b7a9e;font-size:12.5px;">We use <strong>on</strong> when we say a specific date — like 24 April or a Monday.</em>
+        </div>
+      </li>
+      <li class="ex-item ex-item-a">
+        <span class="ex-emoji">🏙️</span>
+        <div class="ex-text">
+          He was born <select class="blank-select ex-blank" data-ans="in" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="to">to</option><option value="on">on</option><option value="in">in</option></select> Mumbai. He was born <select class="blank-select ex-blank" data-ans="in" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="on">on</option><option value="in">in</option><option value="to">to</option></select> 1973.<br>
+          <em class="ex-note" style="color:#5b7a9e;font-size:12.5px;">We use <strong>in</strong> when we say a city, a country, or just a year (without a date).</em>
+        </div>
+      </li>
+      <li class="ex-item ex-item-a">
+        <span class="ex-emoji">👨‍👩‍👦</span>
+        <div class="ex-text">
+          A baby girl was born <select class="blank-select ex-blank" data-ans="to" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="in">in</option><option value="to">to</option><option value="on">on</option></select> Mr. and Mrs. Sharma.<br>
+          <em class="ex-note" style="color:#5b7a9e;font-size:12.5px;">We use <strong>to</strong> (not <em>for</em>) when we say who the parents are.</em>
+        </div>
+      </li>
+    </ul>
+
+    <div class="case-pairs">
+      <div class="case-pair">
+        <span class="case-label">Case 1</span>
+        <div class="case-text">She was born <span class="kw">on</span> August 9, 1933. &nbsp;·&nbsp; She was born <span class="kw">on</span> Monday.</div>
+      </div>
+      <div class="case-pair">
+        <span class="case-label">Case 2</span>
+        <div class="case-text">She was born <span class="kw">in</span> 1933. &nbsp;·&nbsp; She lived <span class="kw">in</span> Tokyo. &nbsp;·&nbsp; She was born <span class="kw">in</span> Japan.</div>
+      </div>
+      <div class="case-pair">
+        <span class="case-label">Case 3</span>
+        <div class="case-text">A child was born <span class="kw">to</span> Mr. and Mrs. Kuroyanagi. &nbsp;·&nbsp; A gift was bought <span class="kw">for</span> her parents.</div>
+      </div>
+    </div>
+
+    <ul class="prompt-list">
+      <li><div class="prompt-num">1</div><div>Which small word do we use before a specific date or day of the week?</div></li>
+      <li><div class="prompt-num">2</div><div>Which small word do we use before a year, a city, or a country?</div></li>
+      <li><div class="prompt-num">3</div><div>When we say whose child someone is, do we use <em>to</em> or <em>for</em>?</div></li>
+    </ul>
+
+    <button class="rule-toggle" onclick="toggleRule(this,'ruleA')" id="btnA">
+      ✨ Reveal My Rule — Station A <span class="arrow">▼</span>
+    </button>
+    <div class="rule-panel" id="ruleA">
+      <div class="rule-box">
+        <div class="rule-item"><span class="ri">RULE 1:</span> Use <strong>on</strong> before a specific date or a day of the week. (on 15 October · on Monday)</div>
+        <div class="rule-item"><span class="ri">RULE 2:</span> Use <strong>in</strong> before a year, a city, or a country. (in 1931 · in Rameswaram · in India)</div>
+        <div class="rule-item"><span class="ri">RULE 3:</span> Use <strong>to</strong> (not <em>for</em>) when saying the parents to whom a child was born. (born to Mr. and Mrs. Kuroyanagi)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Station B ─── -->
+  <div class="card">
+    <div class="station-header">
+      <div class="station-letter sl-b">B</div>
+      <div>
+        <div class="station-title">Talking About the Past — Which Verb Form?</div>
+        <div class="station-subtitle">Past Tense &amp; Infinitives — was/completed · to + base form</div>
+      </div>
+    </div>
+
+    <!-- 3 discovery examples -->
+    <ul class="ex-list">
+      <li class="ex-item ex-item-b">
+        <span class="ex-emoji">🏏</span>
+        <div class="ex-text">
+          Dhoni <select class="blank-select ex-blank" data-ans="led" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="leads">leads</option><option value="led">led</option></select> India to win the World Cup in 2011.<br>
+          <em class="ex-note" style="color:#5b479e;font-size:12.5px;">We use a past tense verb (<em>led</em>, not <em>leads</em>) because this already happened in the past.</em>
+        </div>
+      </li>
+      <li class="ex-item ex-item-b">
+        <span class="ex-emoji">🎓</span>
+        <div class="ex-text">
+          Aryabhata <select class="blank-select ex-blank" data-ans="was" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="is">is</option><option value="was">was</option></select> born in 476 AD. He <select class="blank-select ex-blank" data-ans="studied" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="studied">studied</option><option value="studies">studies</option></select> mathematics.<br>
+          <em class="ex-note" style="color:#5b479e;font-size:12.5px;">For famous people from history, we always use <strong>was/were</strong> and past tense verbs — never "is" or "studies".</em>
+        </div>
+      </li>
+      <li class="ex-item ex-item-b">
+        <span class="ex-emoji">📚</span>
+        <div class="ex-text">
+          Her book went on to <select class="blank-select ex-blank" data-ans="sell" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="sold">sold</option><option value="sell">sell</option></select> millions of copies. She wanted to <select class="blank-select ex-blank" data-ans="study" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="study">study</option><option value="studied">studied</option></select> music.<br>
+          <em class="ex-note" style="color:#5b479e;font-size:12.5px;">After the word <strong>to</strong>, the action verb stays in its simple form — never "sold" or "studied".</em>
+        </div>
+      </li>
+    </ul>
+
+    <div class="case-pairs">
+      <div class="case-pair">
+        <span class="case-label">Case 1</span>
+        <div class="case-text">Tetsuko <span class="kw">completed</span> her education in Tokyo. (already done in the past)<br>Tetsuko <span class="kw">completes</span> her homework every evening. (present habit)</div>
+      </div>
+      <div class="case-pair">
+        <span class="case-label">Case 2</span>
+        <div class="case-text">She <span class="kw">was</span> born in 1933. ✔ &nbsp;·&nbsp; She <span class="kw">is</span> born today. ✗ (wrong for people from history)</div>
+      </div>
+      <div class="case-pair">
+        <span class="case-label">Case 3</span>
+        <div class="case-text">The book went on to <span class="kw">sell</span> 8 million copies. &nbsp;·&nbsp; She wanted to <span class="kw">study</span> music.<br>
+        <em style="font-size:12.5px;color:#6a7a8e">(We do NOT say "to sold" or "to studied".)</em></div>
+      </div>
+    </div>
+
+    <ul class="prompt-list">
+      <li><div class="prompt-num">1</div><div>When writing about someone's life from the past, which tense do we use — past or present?</div></li>
+      <li><div class="prompt-num">2</div><div>When a verb comes right after the word <em>to</em>, does it change to past tense?</div></li>
+    </ul>
+
+    <button class="rule-toggle" onclick="toggleRule(this,'ruleB')" id="btnB">
+      ✨ Reveal My Rule — Station B <span class="arrow">▼</span>
+    </button>
+    <div class="rule-panel" id="ruleB">
+      <div class="rule-box">
+        <div class="rule-item"><span class="ri">RULE 4:</span> Use the <strong>Simple Past</strong> tense for things that already happened in a person's life. (completed, was, studied)</div>
+        <div class="rule-item"><span class="ri">RULE 5:</span> When the action word comes after <strong>to</strong>, keep it in its base (simple) form. (to <em>sell</em> — not to <em>sold</em>; to <em>study</em> — not to <em>studied</em>)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Station C ─── -->
+  <div class="card">
+    <div class="station-header">
+      <div class="station-letter sl-c">C</div>
+      <div>
+        <div class="station-title">A, An, or The — Which One Fits?</div>
+        <div class="station-subtitle">Articles &amp; Quantifiers — a / an / the / many</div>
+      </div>
+    </div>
+
+    <!-- 3 discovery examples -->
+    <ul class="ex-list">
+      <li class="ex-item ex-item-c">
+        <span class="ex-emoji">🍎</span>
+        <div class="ex-text">
+          She ate <select class="blank-select ex-blank" data-ans="an" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="a">a</option><option value="an">an</option></select> apple. She ate <select class="blank-select ex-blank" data-ans="a" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="an">an</option><option value="a">a</option></select> banana.<br>
+          <em class="ex-note" style="color:#005962;font-size:12.5px;">Say <strong>an</strong> before a word that starts with a vowel sound (a, e, i, o, u). Say <strong>a</strong> before a word that starts with a consonant sound.</em>
+        </div>
+      </li>
+      <li class="ex-item ex-item-c">
+        <span class="ex-emoji">🏅</span>
+        <div class="ex-text">
+          Milkha Singh was <select class="blank-select ex-blank" data-ans="a" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="the">the</option><option value="a">a</option></select> runner. He received <select class="blank-select ex-blank" data-ans="the" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="a">a</option><option value="the">the</option></select> Padma Shri Award.<br>
+          <em class="ex-note" style="color:#005962;font-size:12.5px;">Use <strong>a</strong> for one of many things. Use <strong>the</strong> for a unique, one-and-only title or award — there is only one Padma Shri!</em>
+        </div>
+      </li>
+      <li class="ex-item ex-item-c">
+        <span class="ex-emoji">🏆</span>
+        <div class="ex-text">
+          India has won many cricket <select class="blank-select ex-blank" data-ans="trophies" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="trophy">trophy</option><option value="trophies">trophies</option></select>. India won one <select class="blank-select ex-blank" data-ans="trophy" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="trophies">trophies</option><option value="trophy">trophy</option></select> today.<br>
+          <em class="ex-note" style="color:#005962;font-size:12.5px;">Use <strong>many</strong> with plural nouns (trophies, not trophy). For just one, use the singular form.</em>
+        </div>
+      </li>
+    </ul>
+
+    <div class="case-pairs">
+      <div class="case-pair">
+        <span class="case-label">Case 1</span>
+        <div class="case-text">Tetsuko is <span class="kw">an</span> actress. <em style="font-size:12px;color:#6a7a8e">(starts with vowel sound 'a')</em> &nbsp;·&nbsp; Tetsuko is <span class="kw">an</span> author. <em style="font-size:12px;color:#6a7a8e">(starts with vowel sound 'o')</em></div>
+      </div>
+      <div class="case-pair">
+        <span class="case-label">Case 2</span>
+        <div class="case-text">Tetsuko is <span class="kw">a</span> television personality. <em style="font-size:12px;color:#6a7a8e">(starts with consonant 't')</em> &nbsp;·&nbsp; Tetsuko is <span class="kw">a</span> writer. <em style="font-size:12px;color:#6a7a8e">(starts with consonant 'r')</em></div>
+      </div>
+      <div class="case-pair">
+        <span class="case-label">Case 3</span>
+        <div class="case-text">She is <span class="kw">the</span> Goodwill Ambassador for UNICEF. (one special, official title)<br>She met <span class="kw">a</span> goodwill worker. (one of many workers)</div>
+      </div>
+      <div class="case-pair">
+        <span class="case-label">Case 4</span>
+        <div class="case-text">She received <span class="kw">many awards</span>. &nbsp;·&nbsp; She received one <span class="kw">award</span>.</div>
+      </div>
+    </div>
+
+    <ul class="prompt-list">
+      <li><div class="prompt-num">1</div><div>Why does <em>actress</em> need <strong>an</strong> but <em>television personality</em> needs <strong>a</strong>?</div></li>
+      <li><div class="prompt-num">2</div><div>Why is <em>Goodwill Ambassador for UNICEF</em> written with <strong>the</strong> and not <em>a</em>?</div></li>
+      <li><div class="prompt-num">3</div><div>When you use the word <em>many</em>, should the noun be one thing or more than one?</div></li>
+    </ul>
+
+    <button class="rule-toggle" onclick="toggleRule(this,'ruleC')" id="btnC">
+      ✨ Reveal My Rule — Station C <span class="arrow">▼</span>
+    </button>
+    <div class="rule-panel" id="ruleC">
+      <div class="rule-box">
+        <div class="rule-item"><span class="ri">RULE 6:</span> Use <strong>an</strong> before words that start with a vowel sound (a, e, i, o, u). Use <strong>a</strong> before words that start with a consonant sound.</div>
+        <div class="rule-item"><span class="ri">RULE 7:</span> Use <strong>the</strong> for a special, one-and-only official title or post. (the Goodwill Ambassador — there is only one!)</div>
+        <div class="rule-item"><span class="ri">RULE 8:</span> The word <em>many</em> must always be followed by a plural noun (awards, not award).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Station D ─── -->
+  <div class="card">
+    <div class="station-header">
+      <div class="station-letter sl-d">D</div>
+      <div>
+        <div class="station-title">Joining Sentences — Who or Which?</div>
+        <div class="station-subtitle">Joining Words &amp; Comparisons — who / which / the highest</div>
+      </div>
+    </div>
+
+    <!-- 3 discovery examples -->
+    <ul class="ex-list">
+      <li class="ex-item ex-item-d">
+        <span class="ex-emoji">👩‍⚕️</span>
+        <div class="ex-text">
+          She thanked the doctor <select class="blank-select ex-blank" data-ans="who" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="which">which</option><option value="who">who</option></select> helped her.<br>
+          <em class="ex-note" style="color:#6a2800;font-size:12.5px;">Use <strong>who</strong> when you are joining a sentence about a <em>person</em>.</em>
+        </div>
+      </li>
+      <li class="ex-item ex-item-d">
+        <span class="ex-emoji">🎖️</span>
+        <div class="ex-text">
+          She received an award, <select class="blank-select ex-blank" data-ans="which" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="who">who</option><option value="which">which</option></select> is the most famous prize in Japan.<br>
+          <em class="ex-note" style="color:#6a2800;font-size:12.5px;">Use <strong>which</strong> when you are joining a sentence about a <em>thing</em>, such as an award, a book, or a prize.</em>
+        </div>
+      </li>
+      <li class="ex-item ex-item-d">
+        <span class="ex-emoji">🥇</span>
+        <div class="ex-text">
+          It was a high honour → It was the <select class="blank-select ex-blank" data-ans="highest" onchange="checkEx(this)" aria-label="Choose the correct word"><option value="">—</option><option value="high">high</option><option value="highest">highest</option></select> honour in the country.<br>
+          <em class="ex-note" style="color:#6a2800;font-size:12.5px;">When we say something is number one — the absolute best — we add <strong>-est</strong> or use <em>most</em> and put <strong>the</strong> in front.</em>
+        </div>
+      </li>
+    </ul>
+
+    <div class="case-pairs">
+      <div class="case-pair">
+        <span class="case-label">Case 1</span>
+        <div class="case-text">She thanked the doctor <span class="kw">who</span> treated the patients. <em style="font-size:12px;color:#6a7a8e">(person)</em><br>She received the honour, <span class="kw">which</span> is the highest award in broadcasting. <em style="font-size:12px;color:#6a7a8e">(thing/award)</em></div>
+      </div>
+      <div class="case-pair">
+        <span class="case-label">Case 2</span>
+        <div class="case-text">A high honour → A higher honour → <span class="kw">The highest</span> honour in Japan.</div>
+      </div>
+    </div>
+
+    <ul class="prompt-list">
+      <li><div class="prompt-num">1</div><div>Which joining word — <em>who</em> or <em>which</em> — do we use for a thing like a prize or award?</div></li>
+      <li><div class="prompt-num">2</div><div>When we say something is the number one, what ending do we add to the describing word?</div></li>
+    </ul>
+
+    <button class="rule-toggle" onclick="toggleRule(this,'ruleD')" id="btnD">
+      ✨ Reveal My Rule — Station D <span class="arrow">▼</span>
+    </button>
+    <div class="rule-panel" id="ruleD">
+      <div class="rule-box">
+        <div class="rule-item"><span class="ri">RULE 9:</span> Use <strong>who</strong> to refer to people. Use <strong>which</strong> to refer to things, prizes, or awards.</div>
+        <div class="rule-item"><span class="ri">RULE 10:</span> When something is the absolute best, use <strong>the</strong> with the superlative form (add <em>-est</em> or use <em>most</em>). Example: the <em>highest</em>, the <em>greatest</em>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PHASE 3 — ELABORATE (Cloze)
+  ═══════════════════════════════════ -->
+  <div class="phase-header">
+    <span class="phase-badge">Phase 3 · Elaborate</span>
+    <span class="phase-title">Complete the Biography (Page 74)</span>
+  </div>
+
+  <div class="instruction-box">
+    📌 Use the rules you found at Stations A–D to pick the correct word for each blank. Click <strong>Check My Answers</strong> when you are done.
+  </div>
+
+  <div class="card">
+    <div class="passage-text" id="passage">
+      Japanese writer Tetsuko Kuroyanagi
+      <span class="blank-wrap"><span class="blank-num">①</span>
+        <select class="blank-select" id="b1" data-ans="was"><option value="">—</option><option value="is">is</option><option value="was">was</option></select>
+      </span>
+      born
+      <span class="blank-wrap"><span class="blank-num">②</span>
+        <select class="blank-select" id="b2" data-ans="on"><option value="">—</option><option value="in">in</option><option value="on">on</option></select>
+      </span>
+      August 9, 1933
+      <span class="blank-wrap"><span class="blank-num">③</span>
+        <select class="blank-select" id="b3" data-ans="in"><option value="">—</option><option value="at">at</option><option value="in">in</option></select>
+      </span>
+      Tokyo. She was born
+      <span class="blank-wrap"><span class="blank-num">④</span>
+        <select class="blank-select" id="b4" data-ans="to"><option value="">—</option><option value="to">to</option><option value="for">for</option></select>
+      </span>
+      Moritsuna Kuroyanagi and Cho Kuroyanagi. She
+      <span class="blank-wrap"><span class="blank-num">⑤</span>
+        <select class="blank-select" id="b5" data-ans="completed"><option value="">—</option><option value="completes">completes</option><option value="completed">completed</option></select>
+      </span>
+      her education in Keio University and Tokyo College of Music. She is
+      <span class="blank-wrap"><span class="blank-num">⑥</span>
+        <select class="blank-select" id="b6" data-ans="an"><option value="">—</option><option value="a">a</option><option value="an">an</option></select>
+      </span>
+      actress and
+      <span class="blank-wrap"><span class="blank-num">⑦</span>
+        <select class="blank-select" id="b7" data-ans="a"><option value="">—</option><option value="a">a</option><option value="an">an</option></select>
+      </span>
+      television personality. She is
+      <span class="blank-wrap"><span class="blank-num">⑧</span>
+        <select class="blank-select" id="b8" data-ans="the"><option value="">—</option><option value="a">a</option><option value="the">the</option></select>
+      </span>
+      Goodwill Ambassador for UNICEF. She got many
+      <span class="blank-wrap"><span class="blank-num">⑨</span>
+        <select class="blank-select" id="b9" data-ans="awards"><option value="">—</option><option value="award">award</option><option value="awards">awards</option></select>
+      </span>
+      like the Global Leadership for Children Award (UNICEF) and the Japanese Cultural Broadcasting Award,
+      <span class="blank-wrap"><span class="blank-num">⑩</span>
+        <select class="blank-select" id="b10" data-ans="which"><option value="">—</option><option value="who">who</option><option value="which">which</option></select>
+      </span>
+      is the
+      <span class="blank-wrap"><span class="blank-num">⑪</span>
+        <select class="blank-select" id="b11" data-ans="highest"><option value="">—</option><option value="high">high</option><option value="highest">highest</option></select>
+      </span>
+      television honour in Japan. Her masterpiece <em>Totto-Chan, the Little Girl at the Window</em> went on to
+      <span class="blank-wrap"><span class="blank-num">⑫</span>
+        <select class="blank-select" id="b12" data-ans="sell"><option value="">—</option><option value="sell">sell</option><option value="sold">sold</option></select>
+      </span>
+      over 8 million copies.
+    </div>
+    <button class="check-btn" onclick="checkCloze()">✔ Check My Answers</button>
+    <div class="feedback-strip" id="cloze-feedback"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PHASE 4 — TRANSFER
+  ═══════════════════════════════════ -->
+  <div class="phase-header">
+    <span class="phase-badge">Phase 4 · Transfer</span>
+    <span class="phase-title">Write About Rabindranath Tagore</span>
+  </div>
+
+  <div class="instruction-box">
+    📌 Use the Tagore profile card and the 10 rules you found to write a <strong>5-sentence paragraph</strong> about Tagore. Your writing will be checked for the rules you learned.
+  </div>
+
+  <div class="card">
+    <div class="tagore-profile">
+      <h4>📋 Profile Card — Rabindranath Tagore</h4>
+      <table>
+        <tr><td>Birth Date &amp; Place</td><td>May 7, 1861; Calcutta, British India</td></tr>
+        <tr><td>Parents</td><td>Debendranath Tagore and Sarada Devi</td></tr>
+        <tr><td>Profession</td><td>Poet, dramatist, visual artist</td></tr>
+        <tr><td>Milestone</td><td>Completed early schooling through private tutors</td></tr>
+        <tr><td>Recognition</td><td>Awarded the Nobel Prize in Literature in 1913, [who/which] was the first won by an Asian writer</td></tr>
+        <tr><td>Legacy</td><td>His poetry collection <em>Gitanjali</em> went on to [inspire/inspired] readers across the globe</td></tr>
+      </table>
+    </div>
+
+    <textarea class="writing-area" id="tagore-writing"
+      placeholder="Write your 5-sentence paragraph about Tagore here. Use your rules: on/in for dates/places, simple past for milestones, an/a for vowel/consonant sounds, which for awards, and the + -est when comparing…"></textarea>
+
+    <div class="writing-meta">
+      <span>💡 Try to use all your 10 rules in 5 sentences</span>
+      <span>Words: <span id="word-count">0</span></span>
+    </div>
+
+    <button class="check-btn" onclick="checkWriting()" style="margin-top:.6rem">✔ Check My Paragraph</button>
+    <div class="writing-feedback" id="writing-feedback"></div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PHASE 5 — EVALUATE
+  ═══════════════════════════════════ -->
+  <div class="phase-header">
+    <span class="phase-badge">Phase 5 · Evaluate</span>
+    <span class="phase-title">Preposition Accuracy — How Well Did I Do?</span>
+  </div>
+
+  <div class="instruction-box">
+    📌 Look at each preposition rule below. Rate yourself honestly: <strong>😊 Yes, I did it!</strong> &nbsp;·&nbsp; <strong>😐 I tried, but not sure</strong> &nbsp;·&nbsp; <strong>🙁 I need more practice</strong>
+  </div>
+
+  <div class="card" id="checklist">
+
+    <!-- Group A: on -->
+    <div class="smiley-section-label">
+      <span class="smiley-section-badge ssb-a">Rule A · on</span>
+      Using <em>on</em> for specific dates
+    </div>
+
+    <div class="criterion-row" data-id="c1">
+      <div class="crit-text">
+        <div class="crit-title">I used <em>on</em> before a specific date</div>
+        <div class="crit-detail">A specific date has a day number — like 7 May or 15 October.</div>
+        <div class="crit-example">✅ He was born <strong>on</strong> 15 October 1931.</div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c1',3)" title="Yes!">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c1',2)" title="Getting there">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c1',1)" title="Need help">🙁</button>
+      </div>
+    </div>
+
+    <div class="criterion-row" data-id="c2">
+      <div class="crit-text">
+        <div class="crit-title">I know when NOT to use <em>on</em></div>
+        <div class="crit-detail">We do NOT use <em>on</em> before just a year or just a city name.</div>
+        <div class="crit-example">❌ He was born <strong>on</strong> 1931. &nbsp;→&nbsp; ✅ He was born <strong>in</strong> 1931.</div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c2',3)">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c2',2)">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c2',1)">🙁</button>
+      </div>
+    </div>
+
+    <div class="criterion-row" data-id="c3">
+      <div class="crit-text">
+        <div class="crit-title">I used <em>on</em> correctly in my Tagore paragraph</div>
+        <div class="crit-detail">Did your paragraph say "born on May 7" or "born on 7 May"?</div>
+        <div class="crit-example">✅ Tagore was born <strong>on</strong> 7 May 1861.</div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c3',3)">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c3',2)">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c3',1)">🙁</button>
+      </div>
+    </div>
+
+    <!-- Group B: in -->
+    <div class="smiley-section-label" style="margin-top:.3rem;">
+      <span class="smiley-section-badge ssb-b">Rule B · in</span>
+      Using <em>in</em> for cities and years
+    </div>
+
+    <div class="criterion-row" data-id="c4">
+      <div class="crit-text">
+        <div class="crit-title">I used <em>in</em> before a city name</div>
+        <div class="crit-detail">Cities and towns always take <em>in</em> — not <em>on</em> or <em>at</em>.</div>
+        <div class="crit-example">✅ He studied <strong>in</strong> Madras. She lived <strong>in</strong> Tokyo.</div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c4',3)">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c4',2)">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c4',1)">🙁</button>
+      </div>
+    </div>
+
+    <div class="criterion-row" data-id="c5">
+      <div class="crit-text">
+        <div class="crit-title">I used <em>in</em> before a year</div>
+        <div class="crit-detail">When we say just a year (no date), we always use <em>in</em>.</div>
+        <div class="crit-example">✅ He was awarded the Nobel Prize <strong>in</strong> 1913.</div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c5',3)">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c5',2)">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c5',1)">🙁</button>
+      </div>
+    </div>
+
+    <div class="criterion-row" data-id="c6">
+      <div class="crit-text">
+        <div class="crit-title">I used <em>in</em> correctly in my Tagore paragraph</div>
+        <div class="crit-detail">Check your paragraph — did you use <em>in</em> for Calcutta and for 1861 and 1913?</div>
+        <div class="crit-example">✅ He was born <strong>in</strong> Calcutta <strong>in</strong> 1861.</div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c6',3)">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c6',2)">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c6',1)">🙁</button>
+      </div>
+    </div>
+
+    <!-- Group C: to -->
+    <div class="smiley-section-label" style="margin-top:.3rem;">
+      <span class="smiley-section-badge ssb-c">Rule C · to</span>
+      Using <em>to</em> before action verbs
+    </div>
+
+    <div class="criterion-row" data-id="c7">
+      <div class="crit-text">
+        <div class="crit-title">I kept the action word in its base form after <em>to</em></div>
+        <div class="crit-detail">After <em>to</em>, the action word must NOT change to past tense.</div>
+        <div class="crit-example">✅ went on to <strong>inspire</strong> — NOT to <em>inspired</em></div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c7',3)">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c7',2)">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c7',1)">🙁</button>
+      </div>
+    </div>
+
+    <div class="criterion-row" data-id="c8">
+      <div class="crit-text">
+        <div class="crit-title">I used <em>born to</em> (not <em>born for</em>) for parents</div>
+        <div class="crit-detail">When naming parents, we always say <em>born to</em>.</div>
+        <div class="crit-example">✅ He was born <strong>to</strong> Debendranath Tagore and Sarada Devi.</div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c8',3)">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c8',2)">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c8',1)">🙁</button>
+      </div>
+    </div>
+
+    <div class="criterion-row" data-id="c9">
+      <div class="crit-text">
+        <div class="crit-title">I used <em>to</em> correctly in my Tagore paragraph</div>
+        <div class="crit-detail">Did you write "went on to inspire" and "born to … Tagore and Sarada Devi"?</div>
+        <div class="crit-example">✅ His book went on <strong>to</strong> inspire people all over the world.</div>
+      </div>
+      <div class="smiley-btns">
+        <button class="smiley-btn" onclick="rate(this,'c9',3)">😊</button>
+        <button class="smiley-btn" onclick="rate(this,'c9',2)">😐</button>
+        <button class="smiley-btn" onclick="rate(this,'c9',1)">🙁</button>
+      </div>
+    </div>
+
+    <button class="check-btn" onclick="submitChecklist()" style="margin-top:.4rem">📊 Show My Score</button>
+    <div class="score-summary" id="score-summary">
+      <div class="score-total" id="score-total">—</div>
+      <div class="score-label" id="score-label"></div>
+    </div>
+  </div>
+
+  <!-- Grammar Summary (unlocks at 500 XP) -->
+  <div class="unlock-banner" id="unlock-banner">
+    <h3>🏆 Grammar Rules Unlocked!</h3>
+    <p>You have mastered the building blocks of biographical writing. Here is your complete Grammar Reference Card to keep!</p>
+  </div>
+
+  <div class="grammar-summary" id="grammar-summary">
+    <div class="phase-header">
+      <span class="phase-badge">Bonus · Reference</span>
+      <span class="phase-title">Your 10-Rule Grammar Card</span>
+    </div>
+    <div class="rule-grid">
+      <div class="rule-tile">
+        <div class="rt-head"><div class="rt-dot"></div>Rules 1–3: Prepositions</div>
+        <p><strong>on</strong> → specific dates &amp; days · <strong>in</strong> → years, cities, countries · <strong>to</strong> → born to parents</p>
+        <div class="example">"born on 9 August · in Tokyo · born to her parents"</div>
+      </div>
+      <div class="rule-tile">
+        <div class="rt-head"><div class="rt-dot"></div>Rules 4–5: Tenses</div>
+        <p><strong>Simple Past</strong> for things that already happened. Keep the <strong>base form</strong> after the word <em>to</em>.</p>
+        <div class="example">"She completed… · went on to sell…"</div>
+      </div>
+      <div class="rule-tile">
+        <div class="rt-head"><div class="rt-dot"></div>Rules 6–8: Articles</div>
+        <p><strong>an</strong> → vowel sound · <strong>a</strong> → consonant sound · <strong>the</strong> → special one-and-only title · <strong>many</strong> + plural noun</p>
+        <div class="example">"an actress · a writer · the Ambassador · many awards"</div>
+      </div>
+      <div class="rule-tile">
+        <div class="rt-head"><div class="rt-dot"></div>Rules 9–10: Joining Words</div>
+        <p><strong>who</strong> → people · <strong>which</strong> → things/awards · <strong>the + -est</strong> for the very best</p>
+        <div class="example">"the award, which is the highest honour…"</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<footer></footer>
+
+<script>
+/* ── Background ── */
+(function(){
+  const words=['on','in','to','was','born','an','a','the','which','who','highest','sold','completed','many','awards','her','is','wrote','lived','studied'];
+  const colors=['#0a3163','#2f7fd1','#c8a400','#1a5cad','#6a3de8'];
+  const fl=document.getElementById('floaters');
+  for(let i=0;i<22;i++){
+    const w=document.createElement('span');w.className='fw';
+    w.textContent=words[i%words.length];
+    w.style.cssText=`left:${Math.random()*96}%;font-size:${10+Math.random()*18}px;color:${colors[i%colors.length]};animation-duration:${14+Math.random()*22}s;animation-delay:-${Math.random()*22}s;`;
+    fl.appendChild(w);
+  }
+  const st=document.getElementById('stars');
+  for(let i=0;i<28;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=3+Math.random()*6;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*92}%;left:${Math.random()*96}%;animation-duration:${2+Math.random()*4}s;animation-delay:-${Math.random()*4}s;`;
+    st.appendChild(s);
+  }
+})();
+
+/* ── XP / Streak ── */
+let xp=0,streak=0;
+const MAX_XP=600;
+function addXP(amount,el){
+  xp=Math.min(xp+amount,MAX_XP);
+  document.getElementById('xp-now').textContent=xp;
+  document.getElementById('xp-fill').style.width=(xp/MAX_XP*100)+'%';
+  streak=Math.min(streak+1,5);
+  document.querySelectorAll('#streak-dots .streak-dot').forEach((d,i)=>d.classList.toggle('lit',i<streak));
+  const pop=document.createElement('div');pop.className='xp-pop';pop.textContent='+'+amount+' XP';
+  const r=el?el.getBoundingClientRect():{top:200,left:window.innerWidth/2};
+  pop.style.cssText=`top:${r.top+window.scrollY-30}px;left:${r.left+window.scrollX}px;`;
+  document.body.appendChild(pop);setTimeout(()=>pop.remove(),1700);
+  if(xp>=500)showUnlock();
+}
+
+/* ── Discovery Station examples ── */
+function checkEx(sel){
+  sel.classList.remove('correct','wrong');
+  if(!sel.value)return;
+  sel.classList.add(sel.value===sel.dataset.ans?'correct':'wrong');
+  const li=sel.closest('.ex-item');
+  const all=[...li.querySelectorAll('.ex-blank')];
+  li.classList.toggle('done',all.every(x=>x.value===x.dataset.ans));
+}
+
+/* ── Rule toggles ── */
+const revealed={};
+function toggleRule(btn,id){
+  const panel=document.getElementById(id);
+  const open=panel.classList.toggle('open');
+  btn.classList.toggle('open',open);
+  if(open&&!revealed[id]){revealed[id]=true;addXP(40,btn);}
+}
+
+/* ── Cloze check ── */
+let clozeChecked=false;
+function checkCloze(){
+  const ids=['b1','b2','b3','b4','b5','b6','b7','b8','b9','b10','b11','b12'];
+  let correct=0,total=ids.length;
+  ids.forEach(id=>{
+    const sel=document.getElementById(id);
+    sel.classList.remove('correct','wrong');
+    if(sel.value===sel.dataset.ans){sel.classList.add('correct');correct++;}
+    else if(sel.value){sel.classList.add('wrong');}
+  });
+  const fb=document.getElementById('cloze-feedback');
+  fb.classList.remove('show','pass','partial');
+  const unanswered=ids.filter(id=>!document.getElementById(id).value).length;
+  if(unanswered>0){fb.className='feedback-strip show partial';fb.innerHTML=`⚠️ You have ${unanswered} blank(s) still empty. Fill all blanks and try again.`;return;}
+  if(correct===total){
+    fb.className='feedback-strip show pass';
+    fb.innerHTML=`🎉 Perfect! All 12 blanks are correct. You have used all 10 grammar rules!`;
+    if(!clozeChecked){clozeChecked=true;addXP(200,fb);launchConfetti();}
+  } else {
+    fb.className='feedback-strip show partial';
+    fb.innerHTML=`📝 ${correct}/${total} correct. The wrong answers are shown in red — go back to your Station rules and try again!`;
+    if(!clozeChecked&&correct>=8){clozeChecked=true;addXP(80,fb);}
+  }
+}
+
+/* ── Writing check ── */
+let writingChecked=false;
+function checkWriting(){
+  const text=document.getElementById('tagore-writing').value.trim();
+  const words=text.split(/\s+/).filter(w=>w.length>0);
+  const wc=words.length;
+  document.getElementById('word-count').textContent=wc;
+  const fb=document.getElementById('writing-feedback');
+  fb.classList.remove('show');
+  if(wc<20){
+    fb.className='writing-feedback show';
+    fb.innerHTML=`<div class="feedback-strip show partial">✏️ Your paragraph is very short (${wc} words). Try to write at least 5 full sentences using the Tagore details.</div>`;
+    return;
+  }
+  const lower=text.toLowerCase();
+  const checks=[
+    {label:'Past tense verbs (was / completed / awarded)',pass:/\b(was|were|completed|awarded|lived|studied|wrote)\b/.test(lower)},
+    {label:'on + date (born on)',pass:/\bon\s+(may|january|february|march|april|june|july|august|september|october|november|december|\d)/.test(lower)||/born\s+on/.test(lower)},
+    {label:'in + city or year (in Calcutta / in 1861)',pass:/\bin\s+(calcutta|india|1861|1913)/.test(lower)},
+    {label:'Correct article (an / a / the Nobel)',pass:/\b(an artist|an author|a poet|a dramatist|a visual|the nobel)\b/.test(lower)||(/\ban\s+\w/.test(lower)&&/\bthe\s+(nobel|first)\b/.test(lower))},
+    {label:'which (for the award)',pass:/which/.test(lower)},
+    {label:'Tagore mentioned by name',pass:/tagore/.test(lower)},
+  ];
+  const passed=checks.filter(c=>c.pass).length;
+  const missed=checks.filter(c=>!c.pass).map(c=>c.label);
+  let msg='';
+  if(passed>=5){
+    msg=`<div class="feedback-strip show pass">🌟 Excellent paragraph! You have used biography grammar really well. Great work!</div>`;
+    if(!writingChecked){writingChecked=true;addXP(150,fb);launchConfetti();}
+  } else if(passed>=3){
+    msg=`<div class="feedback-strip show partial">👍 Good try! (${passed}/6 checks passed). Try to also include: <em>${missed.join(', ')}</em>.</div>`;
+    if(!writingChecked){writingChecked=true;addXP(60,fb);}
+  } else {
+    msg=`<div class="feedback-strip show partial">✏️ Keep going! Make sure you have included: <em>${missed.join(', ')}</em>. Look at your Station rules and try again.</div>`;
+  }
+  fb.className='writing-feedback show';
+  fb.innerHTML=msg;
+}
+document.getElementById('tagore-writing').addEventListener('input',function(){
+  document.getElementById('word-count').textContent=this.value.split(/\s+/).filter(w=>w.length>0).length;
+});
+
+/* ── Smiley self-assessment (9 checks: 3 per preposition) ── */
+const ratings={};
+function rate(btn,id,val){
+  ratings[id]=val;
+  const row=document.querySelector(`[data-id="${id}"]`);
+  row.querySelectorAll('.smiley-btn').forEach(b=>b.className='smiley-btn');
+  btn.classList.add(`sel-${val}`);
+}
+let checklistDone=false;
+function submitChecklist(){
+  const keys=['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
+  const filled=keys.filter(k=>ratings[k]);
+  if(filled.length<9){alert('Please rate all 9 checks before submitting.');return;}
+  const total=keys.reduce((s,k)=>s+(ratings[k]||0),0);
+  // Section scores
+  const onScore=(ratings['c1']||0)+(ratings['c2']||0)+(ratings['c3']||0);
+  const inScore=(ratings['c4']||0)+(ratings['c5']||0)+(ratings['c6']||0);
+  const toScore=(ratings['c7']||0)+(ratings['c8']||0)+(ratings['c9']||0);
+  const ss=document.getElementById('score-summary');
+  const st=document.getElementById('score-total');
+  const sl=document.getElementById('score-label');
+  ss.classList.add('show');
+  st.textContent=`${total} / 27`;
+  let breakdown=`<br><small style="display:block;margin-top:.4rem;color:#5b6472;">on: ${onScore}/9 &nbsp;·&nbsp; in: ${inScore}/9 &nbsp;·&nbsp; to: ${toScore}/9</small>`;
+  if(total>=24) sl.innerHTML='⭐ Excellent! You have fully understood all three preposition rules.'+breakdown;
+  else if(total>=18) sl.innerHTML='👍 Good work! Check the sections you rated 😐 or 🙁 and revise those rules.'+breakdown;
+  else sl.innerHTML='📖 Keep practising! Go back to Station A and re-read the examples for on, in, and to.'+breakdown;
+  if(!checklistDone){checklistDone=true;addXP(80,ss);}
+}
+
+/* ── Unlock ── */
+function showUnlock(){
+  document.getElementById('unlock-banner').classList.add('show');
+  document.getElementById('grammar-summary').classList.add('show');
+}
+
+/* ── Confetti ── */
+function launchConfetti(){
+  const canvas=document.getElementById('confetti');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const pieces=[];
+  const cols=['#ffd76a','#0a3163','#2f7fd1','#00c853','#ff8f00','#fff'];
+  for(let i=0;i<130;i++) pieces.push({x:Math.random()*canvas.width,y:-10,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,r:4+Math.random()*7,col:cols[i%cols.length],rot:Math.random()*Math.PI*2,vr:(Math.random()-.5)*.2});
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.col;ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r);ctx.restore();});
+    frame++;if(frame<120)requestAnimationFrame(draw);else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+</script>
+</body>
+</html>
